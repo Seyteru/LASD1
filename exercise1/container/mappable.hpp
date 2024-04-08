@@ -40,14 +40,14 @@ public:
   MappableContainer &operator=(const MappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  MappableContainer &operator=(MappableContainer &&) = delete;
+  MappableContainer &operator=(MappableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const MappableContainer &) noexcept = delete;
-  bool operator!=(const MappableContainer &) noexcept = delete;
+  bool operator==(const MappableContainer &) const noexcept = delete;
+  bool operator!=(const MappableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function
@@ -86,14 +86,14 @@ public:
   PreOrderMappableContainer &operator=(const PreOrderMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  PreOrderMappableContainer &operator=(const PreOrderMappableContainer &) = delete;
+  PreOrderMappableContainer &operator=(const PreOrderMappableContainer &) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const PreOrderMappableContainer &) noexcept = delete;
-  bool operator!=(const PreOrderMappableContainer &) noexcept = delete;
+  bool operator==(const PreOrderMappableContainer &) const noexcept = delete;
+  bool operator!=(const PreOrderMappableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function
@@ -137,14 +137,14 @@ public:
   PostOrderMappableContainer &operator=(const PostOrderMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  PostOrderMappableContainer &operator=(const PostOrderMappableContainer &) = delete;
+  PostOrderMappableContainer &operator=(const PostOrderMappableContainer &) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const PostOrderMappableContainer &) noexcept = delete;
-  bool operator!=(const PostOrderMappableContainer &) noexcept = delete;
+  bool operator==(const PostOrderMappableContainer &) const noexcept = delete;
+  bool operator!=(const PostOrderMappableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function
@@ -188,14 +188,14 @@ public:
   InOrderMappableContainer &operator=(const InOrderMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  InOrderMappableContainer &operator=(const InOrderMappableContainer &) = delete;
+  InOrderMappableContainer &operator=(const InOrderMappableContainer &) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const InOrderMappableContainer &) noexcept = delete;
-  bool operator!=(const InOrderMappableContainer &) noexcept = delete;
+  bool operator==(const InOrderMappableContainer &) const noexcept = delete;
+  bool operator!=(const InOrderMappableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function
@@ -239,14 +239,14 @@ public:
   BreadthMappableContainer &operator=(const BreadthMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  BreadthMappableContainer &operator=(const BreadthMappableContainer &) = delete;
+  BreadthMappableContainer &operator=(const BreadthMappableContainer &) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const BreadthMappableContainer &) noexcept = delete;
-  bool operator!=(const BreadthMappableContainer &) noexcept = delete;
+  bool operator==(const BreadthMappableContainer &) const noexcept = delete;
+  bool operator!=(const BreadthMappableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function
