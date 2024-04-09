@@ -14,7 +14,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class Vector{
+class Vector : virtual public ResizableContainer, virtual public LinearContainer<Data>{
   // Must extend ResizableContainer,
   //             LinearContainer<Data>
 
@@ -25,14 +25,16 @@ private:
 protected:
 
   // using Container::???;
+  using Container::size;
 
+  Data *elements = nullptr;
   // ...
 
 public:
 
   // Default constructor
   // Vector() specifiers;
-
+  
   /* ************************************************************************ */
 
   // Specific constructors

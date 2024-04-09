@@ -53,15 +53,11 @@ public:
 
   // type Empty() specifiers; // (concrete function should not throw exceptions)
   // Vedere se conviene definirlo o farlo puro.
-  virtual bool Empty() const noexcept{
-    return (size == 0);
-  }
+  virtual bool Empty() const noexcept = 0;
 
   // type Size() specifiers; // (concrete function should not throw exceptions)
   // Vedere se conviene definirlo o farlo puro.
-  virtual ulong Size() const noexcept{
-    return size;
-  }
+  virtual ulong Size() const noexcept = 0;
 };
 
 /* ************************************************************************** */

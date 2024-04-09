@@ -40,14 +40,14 @@ public:
   TraversableContainer &operator=(const TraversableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  TraversableContainer &operator=(TraversableContainer &&) = delete;
+  TraversableContainer &operator=(TraversableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types might be possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types might be possible.
-  bool operator==(const TraversableContainer &) noexcept = delete;
-  bool operator!=(const TraversableContainer &) noexcept = delete;
+  bool operator==(const TraversableContainer &) const noexcept = delete;
+  bool operator!=(const TraversableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function
@@ -63,15 +63,15 @@ public:
   using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
 
   // template <typename Accumulator>
-  template <typename Accumulator>
   // type Fold(arguments) specifiers;
-  virtual Accumulator Fold<Accumulator>(FoldFun<Accumulator>, Accumulator) = 0; 
+  template <typename Accumulator>
+  inline Accumulator Fold(FoldFun<Accumulator>, Accumulator); 
   /* ************************************************************************ */
 
   // Specific member function (inherited from TestableContainer)
 
   // type Exists(argument) specifiers; // Override TestableContainer member
-  virtual bool Exists() override = 0;
+  virtual bool Exists(const Data &)const noexcept override = 0;
 
 };
 
@@ -93,7 +93,7 @@ public:
 
   // Destructor
   // ~PreOrderTraversableContainer() specifiers
-  virtual ~PreOrderTraversableContainer() = default
+  virtual ~PreOrderTraversableContainer() = default;
 
   /* ************************************************************************ */
 
@@ -125,7 +125,7 @@ public:
   // template <typename Accumulator>
   template <typename Accumulator>
   // type PreOrderFold(arguments) specifiers;
-  virtual Accumulator PreOrderFold<Accumulator>(FoldFun<Accumulator>, Accumulator) = 0;
+  Accumulator PreOrderFold(FoldFun<Accumulator>, Accumulator);
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
@@ -184,7 +184,7 @@ public:
   // template <typename Accumulator>
   template <typename Accumulator>
   // type PostOrderFold(arguments) specifiers;
-  virtual Accumulator PostOrderFold<Accumulator>(FoldFun<Accumulator>, Accumulator) = 0;
+  Accumulator PostOrderFold(FoldFun<Accumulator>, Accumulator);
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
@@ -242,7 +242,7 @@ public:
   // template <typename Accumulator>
   template <typename Accumulator>
   // type InOrderFold(arguments) specifiers;
-  virtual Accumulator InOrderFold(FoldFun<Accumulator>, Accumulator) = 0;
+  Accumulator InOrderFold(FoldFun<Accumulator>, Accumulator);
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
@@ -301,7 +301,7 @@ public:
   // template <typename Accumulator>
   template <typename Accumulator>
   // type BreadthFold(arguments) specifiers;
-  virtual Accumulator BreadthFold<Accumulator>(FoldFun<Accumulator>, Accumulator) = 0;
+  Accumulator BreadthFold(FoldFun<Accumulator>, Accumulator);
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)

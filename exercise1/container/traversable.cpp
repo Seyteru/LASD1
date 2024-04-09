@@ -1,8 +1,9 @@
+#include "traversable.hpp"
 
 namespace lasd {
 
     template <typename Data>
-    bool Exists(Data val){
+    inline bool TraversableContainer<Data>::Exists(const Data &val)const noexcept{
         bool exists = false;
         Traverse(
             [val, &exists](const Data &data){
@@ -12,8 +13,9 @@ namespace lasd {
         return exists;
     }
 
+    template <typename Data>
     template <typename Accumulator>
-    Accumulator Fold(FoldFun<Accumulator> foldFun, Accumulator acc){
+    inline Accumulator TraversableContainer<Data>::Fold(FoldFun<Accumulator> foldFun, Accumulator acc){
         Traverse(
             [foldFun, &acc](const Data &data){
                 acc = foldFun(data, acc);
@@ -22,8 +24,9 @@ namespace lasd {
         return acc;
     }
 
+    template <typename Data>
     template <typename Accumulator>
-    Accumulator PreOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc){
+    inline Accumulator PreOrderTraversableContainer<Data>::PreOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc){
         PreOrderTraverse(
             [foldFun, &acc](const Data &data){
                 acc = foldFun(data, acc);
