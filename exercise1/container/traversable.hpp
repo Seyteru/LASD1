@@ -65,13 +65,13 @@ public:
   // template <typename Accumulator>
   // type Fold(arguments) specifiers;
   template <typename Accumulator>
-  inline Accumulator Fold(FoldFun<Accumulator>, Accumulator); 
+  Accumulator Fold(FoldFun<Accumulator>, Accumulator); 
   /* ************************************************************************ */
 
   // Specific member function (inherited from TestableContainer)
 
   // type Exists(argument) specifiers; // Override TestableContainer member
-  virtual bool Exists(const Data &)const noexcept override = 0;
+  virtual inline bool Exists(const Data &) const noexcept override = 0;
 
 };
 
@@ -131,7 +131,7 @@ public:
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override = 0;
+  virtual void Traverse(TraverseFun) override;
 
 };
 
@@ -190,7 +190,7 @@ public:
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override = 0;
+  virtual void Traverse(TraverseFun) override;
 };
 
 /* ************************************************************************** */
@@ -248,7 +248,7 @@ public:
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override = 0;
+  virtual void Traverse(TraverseFun) override;
 };
 
 /* ************************************************************************** */
@@ -307,7 +307,7 @@ public:
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override = 0;
+  virtual void Traverse(TraverseFun) override;
 };
 
 /* ************************************************************************** */

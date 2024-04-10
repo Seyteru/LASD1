@@ -57,15 +57,15 @@ public:
   // type InsertAll(argument) specifiers; // Copy of the value; From TraversableContainer; True if all are inserted
   // type InsertAll(argument) specifiers; // Move of the value; From MappableContainer; True if all are inserted
   // type RemoveAll(argument) specifiers; // From TraversableContainer; True if all are removed
-  virtual bool InsertAll(const TraversableContainer<Data> &) = delete;
-  virtual bool InsertAll(MappableContainer<Data> &&) = delete;
-  virtual bool RemoveAll(const TraversableContainer<Data> &) = delete;
+  virtual bool InsertAll(const TraversableContainer<Data> &);
+  virtual bool InsertAll(MappableContainer<Data> &&);
+  virtual bool RemoveAll(const TraversableContainer<Data> &);
   // type InsertSome(argument) specifiers; // Copy of the value; From TraversableContainer; True if some is inserted
   // type InsertSome(argument) specifiers; // Move of the value; From MappableContainer; True if some is inserted
   // type RemoveSome(argument) specifiers; // From TraversableContainer; True if some is removed
-  virtual bool InsertSome(const TraversableContainer<Data> &) = delete;
-  virtual bool InsertSome(MappableContainer<Data> &&) = delete;
-  virtual bool RemoveSome(const TraversableContainer<Data> &) = delete;
+  virtual bool InsertSome(const TraversableContainer<Data> &);
+  virtual bool InsertSome(MappableContainer<Data> &&);
+  virtual bool RemoveSome(const TraversableContainer<Data> &);
 };
 
 /* ************************************************************************** */
