@@ -68,31 +68,37 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
+  bool operator==(const Vector &) const noexcept;
+  bool operator!=(const Vector &) const noexcept;
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)
 
   // type Clear() specifiers; // Override ClearableContainer member
-
+  void Clear() override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from ResizableContainer)
 
   // type Resize(argument) specifiers; // Override ResizableContainer member
-
+  void Resize(const ulong) override;
   /* ************************************************************************ */
 
   // Specific member functions (inherited from LinearContainer)
 
   // type operator[](argument) specifiers; // Override (NonMutable) LinearContainer member (must throw std::out_of_range when out of range)
   // type operator[](argument) specifiers; // Override (Mutable) LinearContainer member (must throw std::out_of_range when out of range)
-
+  const Data &operator[](const ulong) const override;
+  Data &operator[](const ulong) override;
   // type Front() specifiers; // Override (NonMutable) LinearContainer member (must throw std::length_error when empty)
   // type Front() specifiers; // Override (Mutable) LinearContainer member (must throw std::length_error when empty)
-
+  const Data &Front() const override;
+  Data &Front() override;
   // type Back() specifiers; // Override (NonMutable) LinearContainer member (must throw std::length_error when empty)
   // type Back() specifiers; // Override (Mutable) LinearContainer member (must throw std::length_error when empty)
+  const Data &Back() const override;
+  Data &Back() override;
 
 protected:
 
@@ -103,7 +109,7 @@ protected:
 /* ************************************************************************** */
 
 template <typename Data>
-class SortableVector {
+class SortableVector : virtual public Vector<Data>, virtual public SortableLinearContainer<Data>{
   // Must extend Vector<Data>,
   //             SortableLinearContainer<Data>
 
