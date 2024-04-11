@@ -147,7 +147,7 @@ public:
 
   // Destructor
   // ~SortableVector() specifiers;
-
+  ~SortableVector() = default;
   /* ************************************************************************ */
 
   // Copy assignment
