@@ -26,7 +26,6 @@ protected:
 
   // using Container::???;
   using Container::size;
-
   Data *elements = nullptr;
   // ...
 
@@ -34,35 +33,37 @@ public:
 
   // Default constructor
   // Vector() specifiers;
-  
+  Vector() = default;
   /* ************************************************************************ */
 
   // Specific constructors
   // Vector(argument) specifiers; // A vector with a given initial dimension
   // Vector(argument) specifiers; // A vector obtained from a TraversableContainer
   // Vector(argument) specifiers; // A vector obtained from a MappableContainer
-
+  Vector(const ulong);
+  Vector(const TraversableContainer<Data> &);
+  Vector(MappableContainer<Data> &&); 
   /* ************************************************************************ */
 
   // Copy constructor
   // Vector(argument) specifiers;
-
+  Vector (const Vector &);
   // Move constructor
   // Vector(argument) specifiers;
-
+  Vector(Vector &&) noexcept;
   /* ************************************************************************ */
 
   // Destructor
   // ~Vector() specifiers;
-
+  ~Vector() = default;
   /* ************************************************************************ */
 
   // Copy assignment
   // type operator=(argument) specifiers;
-
+  Vector &operator=(const Vector &) noexcept;
   // Move assignment
   // type operator=(argument) specifiers;
-
+  Vector &operator=(Vector &&) noexcept;
   /* ************************************************************************ */
 
   // Comparison operators
@@ -120,29 +121,32 @@ private:
 protected:
 
   // using Container::???;
-
+  using Container::size;
   // ...
 
 public:
 
   // Default constructor
   // SortableVector() specifiers;
-
+  SortableVector() = default;
   /* ************************************************************************ */
 
   // Specific constructors
   // SortableVector(argument) specifiers; // A vector with a given initial dimension
   // SortableVector(argument) specifiers; // A vector obtained from a TraversableContainer
   // SortableVector(argument) specifiers; // A vector obtained from a MappableContainer
+  SortableVector(const ulong);
+  SortableVector(const TraversableContainer<Data> &);
+  SortableVector(MappableContainer<Data> &&); 
 
   /* ************************************************************************ */
 
   // Copy constructor
   // SortableVector(argument) specifiers;
-
+  SortableVector(const SortableVector &);
   // Move constructor
   // SortableVector(argument) specifiers;
-
+  SortableVector(SortableVector &&) noexcept;
   /* ************************************************************************ */
 
   // Destructor
@@ -152,9 +156,10 @@ public:
 
   // Copy assignment
   // type operator=(argument) specifiers;
-
+  SortableVector &operator=(const SortableVector &);
   // Move assignment
   // type operator=(argument) specifiers;
+  SortableVector &operator=(SortableVector &&) noexcept;
 
 protected:
 

@@ -42,8 +42,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const DictionaryContainer &) noexcept = delete;
-  bool operator!=(const DictionaryContainer &) noexcept = delete;
+  bool operator==(const DictionaryContainer &) const noexcept = delete;
+  bool operator!=(const DictionaryContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member functions

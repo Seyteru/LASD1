@@ -44,8 +44,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const Container &) noexcept = delete;
-  bool operator!=(const Container &) noexcept = delete;
+  bool operator==(const Container &) const noexcept = delete;
+  bool operator!=(const Container &) const noexcept = delete;
 
   /* ************************************************************************ */
 
@@ -86,15 +86,15 @@ public:
   ClearableContainer &operator=(const ClearableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  ClearableContainer &operator=(ClearableContainer &&)noexcept = delete;
+  ClearableContainer &operator=(ClearableContainer &&) noexcept = delete;
 
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const ClearableContainer &) noexcept = delete;
-  bool operator!=(const ClearableContainer &) noexcept = delete;
+  bool operator==(const ClearableContainer &) const noexcept = delete;
+  bool operator!=(const ClearableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member functions
@@ -138,8 +138,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const ResizableContainer &) noexcept = delete;
-  bool operator!=(const ResizableContainer &) noexcept = delete;
+  bool operator==(const ResizableContainer &) const noexcept = delete;
+  bool operator!=(const ResizableContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member functions

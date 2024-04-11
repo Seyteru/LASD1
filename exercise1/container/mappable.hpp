@@ -53,8 +53,9 @@ public:
   // Specific member function
 
   // using MapFun = std::function<void(Data &)>;
-  using MapFun = std::function<void(Data &)>;
   // type Map(argument) specifiers;
+
+  using MapFun = std::function<void(Data &)>;
   virtual void Map(MapFun) = 0;
 
 };
@@ -99,9 +100,11 @@ public:
   // Specific member function
 
   // using typename MappableContainer<Data>::MapFun;
-  using typename MappableContainer<Data>::MapFun;
   // type PreOrderMap(argument) specifiers;
+
+  using typename MappableContainer<Data>::MapFun;
   virtual void PreOrderMap(MapFun) = 0;
+
   /* ************************************************************************ */
 
   // Specific member function (inherited from MappableContainer)
@@ -150,8 +153,9 @@ public:
   // Specific member function
 
   // using typename MappableContainer<Data>::MapFun;
-  using typename MappableContainer<Data>::MapFun;
   // type PostOrderMap(argument) specifiers;
+
+  using typename MappableContainer<Data>::MapFun;
   virtual void PostOrderMap(MapFun) = 0;
   /* ************************************************************************ */
 
@@ -201,8 +205,9 @@ public:
   // Specific member function
 
   // using typename MappableContainer<Data>::MapFun;
-  using typename MappableContainer<Data>::MapFun;
   // type InOrderMap(argument) specifiers;
+
+  using typename MappableContainer<Data>::MapFun;
   virtual void InOrderMap(MapFun) = 0;
   /* ************************************************************************ */
 
@@ -252,8 +257,9 @@ public:
   // Specific member function
 
   // using typename MappableContainer<Data>::MapFun;
-  using typename MappableContainer<Data>::MapFun;
   // type BreadthMap(argument) specifiers;
+
+  using typename MappableContainer<Data>::MapFun;
   virtual void BreadthMap(MapFun) = 0;
   /* ************************************************************************ */
 

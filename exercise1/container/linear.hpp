@@ -43,8 +43,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
-  bool operator==(const LinearContainer &) noexcept = delete;
-  bool operator!=(const LinearContainer &) noexcept = delete;
+  bool operator==(const LinearContainer &) const noexcept = delete;
+  bool operator!=(const LinearContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member functions
@@ -66,8 +66,9 @@ public:
   // Specific member function (inherited from TraversableContainer)
 
   // using typename TraversableContainer<Data>::TraverseFun;
-  using typename TraversableContainer<Data>::TraverseFun;
   // type Traverse(argument) specifiers; // Override TraversableContainer member
+
+  using typename TraversableContainer<Data>::TraverseFun;
   virtual void Traverse(TraverseFun) override;
   /* ************************************************************************ */
 
@@ -86,8 +87,9 @@ public:
   // Specific member function (inherited from MappableContainer)
 
   // using typename MappableContainer<Data>::MapFun;
-  using typename MappableContainer<Data>::MapFun;
   // type Map(argument) specifiers; // Override MappableContainer member
+
+  using typename MappableContainer<Data>::MapFun;
   virtual void Map(MapFun) override;
   /* ************************************************************************ */
 
@@ -115,6 +117,8 @@ private:
 
 protected:
 
+  using Container::size;
+  using LinearContainer<Data>::operator[];
   // ...
 
 public:
@@ -135,8 +139,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
-  bool operator==(const SortableLinearContainer &) noexcept = delete;
-  bool operator!=(const SortableLinearContainer &) noexcept = delete;
+  inline bool operator==(const SortableLinearContainer &) const noexcept = delete;
+  inline bool operator!=(const SortableLinearContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function

@@ -58,20 +58,20 @@ public:
   // type Traverse(arguments) specifiers;
   virtual void Traverse(TraverseFun) const = 0;
   // template <typename Accumulator>
-  template <typename Accumulator>
   // using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
+  template <typename Accumulator>
   using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
 
   // template <typename Accumulator>
   // type Fold(arguments) specifiers;
   template <typename Accumulator>
-  Accumulator Fold(FoldFun<Accumulator>, Accumulator); 
+  Accumulator Fold(FoldFun<Accumulator>, Accumulator) const; 
   /* ************************************************************************ */
 
   // Specific member function (inherited from TestableContainer)
 
   // type Exists(argument) specifiers; // Override TestableContainer member
-  virtual inline bool Exists(const Data &) const noexcept override = 0;
+  inline bool Exists(const Data &) const noexcept override;
 
 };
 
@@ -115,17 +115,20 @@ public:
   // Specific member function
 
   // using typename TraversableContainer<Data>::TraverseFun;
-  using typename TraversableContainer<Data>::TraverseFun;
   // type PreOrderTraverse(arguments) specifiers;
+  using typename TraversableContainer<Data>::TraverseFun;
   virtual void PreOrderTraverse(TraverseFun) = 0;
+
   // template <typename Accumulator>
-  template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
+
+  template <typename Accumulator>
   using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
   // template <typename Accumulator>
-  template <typename Accumulator>
   // type PreOrderFold(arguments) specifiers;
-  Accumulator PreOrderFold(FoldFun<Accumulator>, Accumulator);
+
+  template <typename Accumulator>
+  Accumulator PreOrderFold(FoldFun<Accumulator>, Accumulator) const;
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
@@ -174,16 +177,21 @@ public:
   // Specific member function
 
   // using typename TraversableContainer<Data>::TraverseFun;
-  using typename TraversableContainer<Data>::TraverseFun;
   // type PostOrderTraverse(arguments) specifiers;
+
+  using typename TraversableContainer<Data>::TraverseFun;
   virtual void PostOrderTraverse(TraverseFun) = 0;
+
   // template <typename Accumulator>
-  template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
-  using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
-  // template <typename Accumulator>
+
   template <typename Accumulator>
+  using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
+
+  // template <typename Accumulator>
   // type PostOrderFold(arguments) specifiers;
+
+  template <typename Accumulator>
   Accumulator PostOrderFold(FoldFun<Accumulator>, Accumulator);
   /* ************************************************************************ */
 
@@ -232,16 +240,21 @@ public:
   // Specific member function
 
   // using typename TraversableContainer<Data>::TraverseFun;
-  using typename TraversableContainer<Data>::TraverseFun;
   // type InOrderTraverse(arguments) specifiers;
+
+  using typename TraversableContainer<Data>::TraverseFun;
   virtual void InOrderTraverse(TraverseFun) = 0;
+
   // template <typename Accumulator>
-  template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
-  using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
-  // template <typename Accumulator>
+
   template <typename Accumulator>
+  using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
+
+  // template <typename Accumulator>
   // type InOrderFold(arguments) specifiers;
+
+  template <typename Accumulator>
   Accumulator InOrderFold(FoldFun<Accumulator>, Accumulator);
   /* ************************************************************************ */
 
@@ -290,17 +303,21 @@ public:
   // Specific member function
 
   // using typename TraversableContainer<Data>::TraverseFun;
-  using typename TraversableContainer<Data>::TraverseFun;
   // type BreadthTraverse(arguments) specifiers;
+
+  using typename TraversableContainer<Data>::TraverseFun;
   virtual void BreadthTraverse(TraverseFun) = 0;
+
   // template <typename Accumulator>
-  template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
+
+  template <typename Accumulator>
   using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
   // template <typename Accumulator>
-  template <typename Accumulator>
   // type BreadthFold(arguments) specifiers;
+
+  template <typename Accumulator>
   Accumulator BreadthFold(FoldFun<Accumulator>, Accumulator);
   /* ************************************************************************ */
 
