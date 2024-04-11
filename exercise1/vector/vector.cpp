@@ -43,8 +43,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    Vector<Data>::~Vector()
-    {
+    Vector<Data>::~Vector(){
         delete[] elements;
     }
 
@@ -63,4 +62,48 @@ namespace lasd {
         
     }
 
+    template <typename Data>
+    bool Vector<Data>::operator!=(const Vector &) const noexcept{
+        
+    }
+
+    template <typename Data>
+    void Vector<Data>::Clear(){
+
+    }
+
+    template <typename Data>
+    void Vector<Data>::Resize(const ulong){
+
+    }
+
+    template <typename Data>
+    const Data &Vector<Data>::operator[](const ulong) const{
+
+    }
+
+    template <typename Data>
+    Data &Vector<Data>::operator[](const ulong){
+
+    }
+
+    template <typename Data>
+    const Data &Vector<Data>::Front() const{
+    }
+
+    template <typename Data>
+    Data &Vector<Data>::Front(){
+
+    }
+
+    template <typename Data>
+    const Data &Vector<Data>::Back() const{
+    }
+
+    template <typename Data>
+    Data &Vector<Data>::Back(){
+        
+    }
+
+    
 }
