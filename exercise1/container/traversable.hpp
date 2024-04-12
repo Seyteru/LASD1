@@ -56,7 +56,7 @@ public:
   using TraverseFun = std::function<void(const Data &)>;
 
   // type Traverse(arguments) specifiers;
-  virtual void Traverse(TraverseFun) const = 0;
+  inline virtual void Traverse(TraverseFun) const = 0;
   // template <typename Accumulator>
   // using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
   template <typename Accumulator>
@@ -117,7 +117,7 @@ public:
   // using typename TraversableContainer<Data>::TraverseFun;
   // type PreOrderTraverse(arguments) specifiers;
   using typename TraversableContainer<Data>::TraverseFun;
-  virtual void PreOrderTraverse(TraverseFun) = 0;
+  virtual inline void PreOrderTraverse(TraverseFun) const = 0;
 
   // template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
@@ -134,7 +134,7 @@ public:
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override;
+  inline void Traverse(TraverseFun) const override;
 
 };
 
@@ -180,7 +180,7 @@ public:
   // type PostOrderTraverse(arguments) specifiers;
 
   using typename TraversableContainer<Data>::TraverseFun;
-  virtual void PostOrderTraverse(TraverseFun) = 0;
+  virtual inline void PostOrderTraverse(TraverseFun) const = 0;
 
   // template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
@@ -192,13 +192,13 @@ public:
   // type PostOrderFold(arguments) specifiers;
 
   template <typename Accumulator>
-  Accumulator PostOrderFold(FoldFun<Accumulator>, Accumulator);
+  Accumulator PostOrderFold(FoldFun<Accumulator>, Accumulator) const;
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override;
+  inline void Traverse(TraverseFun) const override;
 };
 
 /* ************************************************************************** */
@@ -243,7 +243,7 @@ public:
   // type InOrderTraverse(arguments) specifiers;
 
   using typename TraversableContainer<Data>::TraverseFun;
-  virtual void InOrderTraverse(TraverseFun) = 0;
+  virtual inline void InOrderTraverse(TraverseFun) const = 0;
 
   // template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
@@ -255,13 +255,13 @@ public:
   // type InOrderFold(arguments) specifiers;
 
   template <typename Accumulator>
-  Accumulator InOrderFold(FoldFun<Accumulator>, Accumulator);
+  Accumulator InOrderFold(FoldFun<Accumulator>, Accumulator) const;
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override;
+  inline void Traverse(TraverseFun) const override;
 };
 
 /* ************************************************************************** */
@@ -306,7 +306,7 @@ public:
   // type BreadthTraverse(arguments) specifiers;
 
   using typename TraversableContainer<Data>::TraverseFun;
-  virtual void BreadthTraverse(TraverseFun) = 0;
+  virtual inline void BreadthTraverse(TraverseFun) const = 0;
 
   // template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
@@ -318,13 +318,13 @@ public:
   // type BreadthFold(arguments) specifiers;
 
   template <typename Accumulator>
-  Accumulator BreadthFold(FoldFun<Accumulator>, Accumulator);
+  Accumulator BreadthFold(FoldFun<Accumulator>, Accumulator) const;
   /* ************************************************************************ */
 
   // Specific member function (inherited from TraversableContainer)
 
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
-  virtual void Traverse(TraverseFun) override;
+  inline void Traverse(TraverseFun) const override;
 };
 
 /* ************************************************************************** */

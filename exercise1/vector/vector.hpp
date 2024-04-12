@@ -55,7 +55,7 @@ public:
 
   // Destructor
   // ~Vector() specifiers;
-  ~Vector() = default;
+  ~Vector();
   /* ************************************************************************ */
 
   // Copy assignment
@@ -122,6 +122,7 @@ protected:
 
   // using Container::???;
   using Container::size;
+  Data *elements = nullptr;
   // ...
 
 public:
@@ -151,7 +152,7 @@ public:
 
   // Destructor
   // ~SortableVector() specifiers;
-  ~SortableVector() = default;
+  ~SortableVector();
   /* ************************************************************************ */
 
   // Copy assignment

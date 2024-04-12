@@ -1,4 +1,3 @@
-
 namespace lasd {
 
     template <typename Data>
@@ -28,7 +27,7 @@ namespace lasd {
         bool result = true;
         container.Traverse(
             [this, &result](const Data &dat){
-                result = result && Remove(dat)
+                result = result && Remove(dat);
             }
         );
         return result;
@@ -39,7 +38,7 @@ namespace lasd {
         bool result = false;
         container.Traverse(
             [this, &result](const Data &dat){
-                result = result || Insert(dat)
+                result = result || Insert(dat);
             }
         );
         return result;

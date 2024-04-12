@@ -24,19 +24,19 @@ namespace lasd {
     }
 
     template <typename Data>
-    inline void LinearContainer<Data>::Traverse(TraverseFun traverseFun){
+    inline void LinearContainer<Data>::Traverse(TraverseFun traverseFun) const{
         PreOrderTraverse(traverseFun);
     }
 
     template <typename Data>
-    inline void LinearContainer<Data>::PreOrderTraverse(TraverseFun traverseFun){
+    inline void LinearContainer<Data>::PreOrderTraverse(TraverseFun traverseFun) const{
         for(ulong index = 0; index < size; ++index){
             traverseFun(operator[](index));
         }
     }
 
     template <typename Data>
-    inline void LinearContainer<Data>::PostOrderTraverse(TraverseFun traverseFun){
+    inline void LinearContainer<Data>::PostOrderTraverse(TraverseFun traverseFun) const{
         ulong index = size;
         while(index > 0){
             traverseFun(operator[](--index));
@@ -50,7 +50,7 @@ namespace lasd {
 
     template <typename Data>
     inline void LinearContainer<Data>::PreOrderMap(MapFun mapFun){
-        for(ulong index; index < size; ++index){
+        for(ulong index = 0; index < size; ++index){
             mapFun(operator[](index));
         }
     }
@@ -59,22 +59,38 @@ namespace lasd {
     inline void LinearContainer<Data>::PostOrderMap(MapFun mapFun){
         ulong index = size;
         while(index > 0){
-            mapFun(operator[](--index))
+            mapFun(operator[](--index));
+        }
+    }
+
+    template <typename Data>
+    ulong SortableLinearContainer<Data>::Partition(ulong start, ulong end){
+        Data pivotValue = (*this)[start];
+        ulong pivotPosition = start;
+        for(ulong position = start + 1; position <= end; ++position){
+            if((*this)[position] < pivotValue){
+                std::swap((*this)[pivotPosition + 1], (*this)[position]);
+                std::swap((*this)[pivotPosition], (*this)[pivotPosition + 1]);
+                pivotPosition++;
+            }
+        }
+        return pivotPosition;
+    }
+
+    template <typename Data>
+    void SortableLinearContainer<Data>::QuickSort(ulong start, ulong end){
+        if(start < end){
+            ulong partition = Partition(start, end);
+            QuickSort(start, partition-1);
+            QuickSort(partition+1, end);
         }
     }
 
     template <typename Data>
     void SortableLinearContainer<Data>::Sort() noexcept{
-        QuickSort();
-    }
-
-    template <typename Data>
-    void SortableLinearContainer<Data>::QuickSort(ulong p, ulong r){
-        if(p < r){
-            ulong q = Partition(p, r);
-            QuickSort(p, q);
-            QuickSort(q+1, r);
-        }
+        ulong start = 0;
+        ulong end = size - 1; 
+        QuickSort(start, end);
     }
 
 }

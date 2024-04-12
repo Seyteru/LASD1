@@ -52,12 +52,14 @@ public:
   // Specific member functions
 
   // type Empty() specifiers; // (concrete function should not throw exceptions)
-  // Vedere se conviene definirlo o farlo puro.
-  virtual bool Empty() const noexcept = 0;
+  virtual bool Empty() const noexcept{
+    return size == 0;
+  }
 
   // type Size() specifiers; // (concrete function should not throw exceptions)
-  // Vedere se conviene definirlo o farlo puro.
-  virtual ulong Size() const noexcept = 0;
+  virtual ulong Size() const noexcept{
+    return size;
+  }
 };
 
 /* ************************************************************************** */
@@ -101,9 +103,7 @@ public:
 
   // type Clear() specifiers;
   // Vedere se conviene definirlo o farlo puro.
-  virtual void Clear(){
-    size = 0;
-  }
+  virtual void Clear() = 0;
 
 };
 
@@ -146,18 +146,14 @@ public:
 
   // type Resize(argument) specifiers;
   // Vedere se conviene definirlo o farlo puro.
-  virtual void Resize(ulong resize){
-    size = resize; 
-  }
+  virtual void Resize(ulong resize) = 0;
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)
 
   // type Clear() specifiers; // Override ClearableContainer member
   // Forse non necessario perche definito in container
-  virtual void Clear() override{
-    Resize(0);
-  };
+  virtual void Clear() override = 0;
 
 };
 

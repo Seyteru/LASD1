@@ -24,12 +24,13 @@ private:
 protected:
 
   // ...
+  using Container::size;
 
 public:
 
   // Destructor
   // ~LinearContainer() specifiers
-  virtual ~LinearContainer() = delete;
+  virtual ~LinearContainer() = default;
   /* ************************************************************************ */
 
   // Copy assignment
@@ -69,19 +70,19 @@ public:
   // type Traverse(argument) specifiers; // Override TraversableContainer member
 
   using typename TraversableContainer<Data>::TraverseFun;
-  virtual void Traverse(TraverseFun) override;
+  inline void Traverse(TraverseFun) const override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from PreOrderTraversableContainer)
 
   // type PreOrderTraverse(argument) specifiers; // Override PreOrderTraversableContainer member
-  virtual void PreOrderTraverse(TraverseFun) override;
+  inline void PreOrderTraverse(TraverseFun) const override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from PostOrderTraversableContainer)
 
   // type PostOrderTraverse(argument) specifiers; // Override PostOrderTraversableContainer member
-  virtual void PostOrderTraverse(TraverseFun) override;
+  inline void PostOrderTraverse(TraverseFun) const override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from MappableContainer)
@@ -96,13 +97,13 @@ public:
   // Specific member function (inherited from PreOrderMappableContainer)
 
   // type PreOrderMap(argument) specifiers; // Override PreOrderMappableContainer member
-  virtual void PreOrderMap(MapFun) override;
+  inline void PreOrderMap(MapFun) override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from PostOrderMappableContainer)
 
   // type PostOrderMap(argument) specifiers; // Override PostOrderMappableContainer member
-  virtual void PostOrderMap(MapFun) override;
+  inline void PostOrderMap(MapFun) override;
 };
 
 /* ************************************************************************** */
@@ -125,7 +126,7 @@ public:
 
   // Destructor
   // ~SortableLinearContainer() specifiers
-  virtual ~SortableLinearContainer() = delete;
+  virtual ~SortableLinearContainer() = default;
   /* ************************************************************************ */
 
   // Copy assignment
@@ -150,7 +151,7 @@ public:
 protected:
   // Auxiliary member functions
   //SortMethod()
-  virtual void QuickSort(ulong, ulong);
+  void QuickSort(ulong, ulong);
   ulong Partition(ulong, ulong);
   // ...
 
