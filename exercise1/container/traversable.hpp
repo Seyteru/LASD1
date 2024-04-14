@@ -53,9 +53,8 @@ public:
   // Specific member function
 
   // using TraverseFun = std::function<void(const Data &)>;
-  using TraverseFun = std::function<void(const Data &)>;
-
   // type Traverse(arguments) specifiers;
+  using TraverseFun = std::function<void(const Data &)>;
   inline virtual void Traverse(TraverseFun) const = 0;
   // template <typename Accumulator>
   // using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;

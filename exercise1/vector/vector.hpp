@@ -60,7 +60,7 @@ public:
 
   // Copy assignment
   // type operator=(argument) specifiers;
-  Vector &operator=(const Vector &) noexcept;
+  Vector &operator=(const Vector &);
   // Move assignment
   // type operator=(argument) specifiers;
   Vector &operator=(Vector &&) noexcept;
@@ -122,6 +122,7 @@ protected:
 
   // using Container::???;
   using Container::size;
+  using Vector<Data>::operator[];
   Data *elements = nullptr;
   // ...
 

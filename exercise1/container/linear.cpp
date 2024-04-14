@@ -1,12 +1,11 @@
 #include "linear.hpp"
 namespace lasd {
 
-//  Da Rivedere le traverse e map, il Sort, e se size viene visto o bisogna chiamare Size()
-
-    template <typename Data>
-    inline const Data& LinearContainer<Data>::Front() const{
-        return operator[] (0);
-    }
+template <typename Data>
+inline const Data &LinearContainer<Data>::Front() const
+{
+    return operator[](0);
+}
 
     template <typename Data>
     inline Data& LinearContainer<Data>::Front(){
@@ -87,10 +86,10 @@ namespace lasd {
     }
 
     template <typename Data>
-    void SortableLinearContainer<Data>::Sort() noexcept{
+    void SortableLinearContainer<Data>::Sort() noexcept
+    {
         ulong start = 0;
         ulong end = size - 1; 
         QuickSort(start, end);
     }
-
 }

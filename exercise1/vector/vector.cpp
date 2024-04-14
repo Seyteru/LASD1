@@ -4,9 +4,9 @@ namespace lasd {
 
     //Specific Constructors.
     template <typename Data>
-    Vector<Data>::Vector(const ulong newsize){
-        size = newsize;
-        elements = new Data[size] {};
+    Vector<Data>::Vector(const ulong newSize){
+        size = newSize;
+        elements = new Data[size]{};
     }
 
     template <typename Data>
@@ -14,7 +14,8 @@ namespace lasd {
         ulong index = 0;
         container.Traverse(
             [this, &index](const Data &dat){
-                elements[index++] = dat;
+                elements[index] = dat;
+                index++;
             }
         );
     }
@@ -24,7 +25,8 @@ namespace lasd {
         ulong index = 0;
         container.Map(
             [this, &index](Data &dat){
-                elements[index++] = std::move(dat);
+                elements[index] = std::move(dat);
+                index++;
             }
         );
     }
@@ -32,9 +34,9 @@ namespace lasd {
     //Copy Constructor
     template <typename Data>
     Vector<Data>::Vector(const Vector<Data> &vect){
+        elements = new Data[vect.size];
+        std::copy(vect.elements, vect.elements + vect.size, elements);
         size = vect.size;
-        elements = new Data[size];
-        std::copy(vect.elements, vect.elements + size, elements);
     }
 
     //Move Constructor
@@ -52,17 +54,18 @@ namespace lasd {
 
     //Operator
     template <typename Data>
-    Vector<Data> &Vector<Data>::operator=(const Vector &vect) noexcept{
+    Vector<Data> &Vector<Data>::operator=(const Vector<Data> &vect){
         Vector<Data> *tempVector = new Vector<Data>(vect);
         std::swap(*tempVector, *this);
-        delete *tempVector;
+        delete[] tempVector;
         return *this;
     }
 
     //Operator
     template <typename Data>
-    Vector<Data> &Vector<Data>::operator=(Vector &&vect) noexcept{
-       *this = std::move(vect);
+    Vector<Data> &Vector<Data>::operator=(Vector<Data> &&vect) noexcept{
+       std::swap(elements, vect.elements);
+       std::swap(size, vect.size);
        return *this;
     }
 
@@ -98,8 +101,15 @@ namespace lasd {
     void Vector<Data>::Resize(const ulong newSize){
         if(newSize == 0){
             Clear();
-        } else if(newSize != size){
+        } else if(size != newSize){
             Data *tempElement = new Data[newSize]{};
+            ulong minimumSize = (size < newSize) ? size : newSize;
+            for(ulong index = 0; index < minimumSize; ++index){
+                elements[index] = tempElement[index];
+            }
+            elements = tempElement;
+            size = newSize;
+            delete[] tempElement;
         }
     }
 
