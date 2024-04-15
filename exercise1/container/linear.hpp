@@ -150,8 +150,8 @@ public:
 protected:
   // Auxiliary member functions
   //SortMethod()
-  void QuickSort(ulong, ulong) noexcept;
-  ulong Partition(ulong, ulong) noexcept;
+  virtual void QuickSort(ulong, ulong);
+  virtual ulong Partition(ulong, ulong);
   // ...
 
 };

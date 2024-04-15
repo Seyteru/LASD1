@@ -49,7 +49,7 @@ namespace lasd {
     //Destructor
     template <typename Data>
     Vector<Data>::~Vector(){
-        Clear();
+        delete[] elements;
     }
 
     //Operator
