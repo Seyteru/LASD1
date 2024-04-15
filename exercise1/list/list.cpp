@@ -118,7 +118,7 @@ namespace lasd {
             front -> next = nullptr;
             delete front;
         } else{
-            throw std::lenght_error("Access to Empty List");
+            throw std::length_error("Access to Empty List");
         }
     }
 
@@ -127,7 +127,7 @@ namespace lasd {
         if(head != nullptr){
             //TODO
         } else{
-            throw std::lenght_error("Access to Empty List");
+            throw std::length_error("Access to Empty List");
         }
     }
 
@@ -185,24 +185,24 @@ namespace lasd {
         return true;
     }
 
-    template <typename Data>
-    bool List<Data>::Remove(const Data &data){
-        Node *end = nullptr;
-        for(Node **current = &head; *current != nullptr; end = *current, current = &((/*ToDo*/))){
-            if((*current) -> element == data){
-                Node *node = *current;
-                *current = node -> next;
-                node -> next = nullptr;
-                delete node;
-                size--;
-                if(tail == node){
-                    tail = end;
-                }
-                return true;
-            }
-        }
-        return false;
-    }
+    // template <typename Data>
+    // bool List<Data>::Remove(const Data &data){
+    //     Node *end = nullptr;
+    //     for(Node **current = &head; *current != nullptr; end = *current, current = &((/*ToDo*/))){
+    //         if((*current) -> element == data){
+    //             Node *node = *current;
+    //             *current = node -> next;
+    //             node -> next = nullptr;
+    //             delete node;
+    //             size--;
+    //             if(tail == node){
+    //                 tail = end;
+    //             }
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
     template <typename Data>
     const Data &List<Data>::operator[](const ulong index) const{

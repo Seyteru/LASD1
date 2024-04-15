@@ -123,7 +123,7 @@ protected:
   // using Container::???;
   using Container::size;
   using Vector<Data>::operator[];
-  Data *elements = nullptr;
+  using Vector<Data>::elements;
   // ...
 
 public:

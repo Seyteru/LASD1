@@ -228,4 +228,5 @@ namespace lasd {
        Vector<Data>::operator=(std::move(vect));
        return *this;
     }
+
 }
