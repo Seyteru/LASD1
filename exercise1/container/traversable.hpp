@@ -101,7 +101,7 @@ public:
   PreOrderTraversableContainer &operator=(const PreOrderTraversableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  PreOrderTraversableContainer &operator=(PreOrderTraversableContainer &&) = delete;
+  PreOrderTraversableContainer &operator=(PreOrderTraversableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
@@ -163,7 +163,7 @@ public:
   PostOrderTraversableContainer &operator=(const PostOrderTraversableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  PostOrderTraversableContainer &operator=(PostOrderTraversableContainer &&) = delete;
+  PostOrderTraversableContainer &operator=(PostOrderTraversableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
@@ -226,7 +226,7 @@ public:
   InOrderTraversableContainer &operator=(const InOrderTraversableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  InOrderTraversableContainer &operator=(InOrderTraversableContainer &&) = delete;
+  InOrderTraversableContainer &operator=(InOrderTraversableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
@@ -289,7 +289,7 @@ public:
   BreadthTraversableContainer &operator=(const BreadthTraversableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  BreadthTraversableContainer &operator=(BreadthTraversableContainer &&) = delete;
+  BreadthTraversableContainer &operator=(BreadthTraversableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators

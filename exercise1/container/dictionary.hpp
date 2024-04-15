@@ -36,7 +36,7 @@ public:
   DictionaryContainer &operator=(const DictionaryContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  DictionaryContainer &operator=(DictionaryContainer &&) = delete;
+  DictionaryContainer &operator=(DictionaryContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators

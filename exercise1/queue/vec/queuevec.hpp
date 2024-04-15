@@ -14,7 +14,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class QueueVec {
+class QueueVec : virtual public Queue<Data>, virtual protected Vector<Data>{
   // Must extend Queue<Data>,
   //             Vector<Data>
 
@@ -33,38 +33,56 @@ public:
   // Default constructor
   // QueueVec() specifier;
 
+  QueueVec() = default;
+
   /* ************************************************************************ */
 
   // Specific constructor
   // QueueVec(argument) specifiers; // A stack obtained from a TraversableContainer
   // QueueVec(argument) specifiers; // A stack obtained from a MappableContainer
 
+  QueueVec(const TraversableContainer<Data> &);
+  QueueVec(MappableContainer<Data> &&);
+
   /* ************************************************************************ */
 
   // Copy constructor
   // QueueVec(argument);
 
+  QueueVec(const QueueVec<Data> &);
+
   // Move constructor
   // QueueVec(argument);
+
+  QueueVec(QueueVec<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
   // Destructor
   // ~QueueVec() specifier;
 
+  ~QueueVec() = default;
+
   /* ************************************************************************ */
 
   // Copy assignment
   // type operator=(argument);
 
+  QueueVec &operator=(const QueueVec &);
+
   // Move assignment
   // type operator=(argument);
+
+  QueueVec &operator=(QueueVec &&) noexcept;
 
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
+
+  bool operator==(const QueueVec &) const noexcept;
+  bool operator!=(const QueueVec &) const noexcept;
 
   /* ************************************************************************ */
 
@@ -77,19 +95,32 @@ public:
   // type Enqueue(argument) specifiers; // Override Queue member (copy of the value)
   // type Enqueue(argument) specifiers; // Override Queue member (move of the value)
 
+  const Data &Head() const override;
+  Data &Head() override;
+  void Dequeue() override;
+  Data HeadNDequeue() override;
+  void Enqueue(const Data &) override;
+  void Enqueue(Data &&) override;
+
   /* ************************************************************************ */
 
   // Specific member functions (inherited from Container)
 
   // type Empty() specifiers; // Override Container member
 
+  bool Empty() const noexcept override;
+
   // type Size() specifiers; // Override Container member
+
+  ulong Size() const noexcept override;
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)
 
   // type Clear() specifiers; // Override ClearableContainer member
+
+  void Clear() override;
 
 protected:
 

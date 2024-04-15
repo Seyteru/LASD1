@@ -5,16 +5,16 @@ namespace lasd {
     //Specific Constructors.
     template <typename Data>
     Vector<Data>::Vector(const ulong newSize){
+        elements = new Data[newSize]{};
         size = newSize;
-        elements = new Data[size]{};
     }
 
     template <typename Data>
     Vector<Data>::Vector(const TraversableContainer<Data> &container){
         ulong index = 0;
         container.Traverse(
-            [this, &index](const Data &dat){
-                elements[index] = dat;
+            [this, &index](const Data &data){
+                elements[index] = data;
                 index++;
             }
         );
@@ -24,8 +24,8 @@ namespace lasd {
     Vector<Data>::Vector(MappableContainer<Data> &&container){
         ulong index = 0;
         container.Map(
-            [this, &index](Data &dat){
-                elements[index] = std::move(dat);
+            [this, &index](Data &data){
+                elements[index] = std::move(data);
                 index++;
             }
         );
@@ -49,7 +49,7 @@ namespace lasd {
     //Destructor
     template <typename Data>
     Vector<Data>::~Vector(){
-        delete[] elements;
+        Clear();
     }
 
     //Operator
@@ -178,8 +178,8 @@ namespace lasd {
     SortableVector<Data>::SortableVector(const TraversableContainer<Data> &container){
         ulong index = 0;
         container.Traverse(
-            [this, &index](const Data &dat){
-                elements[index++] = dat;
+            [this, &index](const Data &data){
+                elements[index++] = data;
             }
         );
     }
@@ -188,8 +188,8 @@ namespace lasd {
     SortableVector<Data>::SortableVector(MappableContainer<Data> &&container){
         ulong index = 0;
         container.Map(
-            [this, &index](Data &dat){
-                elements[index++] = std::move(dat);
+            [this, &index](Data &data){
+                elements[index++] = std::move(data);
             }
         );
     }

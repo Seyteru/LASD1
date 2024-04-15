@@ -52,12 +52,12 @@ public:
   // Specific member functions
 
   // type Empty() specifiers; // (concrete function should not throw exceptions)
-  virtual bool Empty() const noexcept{
-    return size == 0;
+  virtual inline bool Empty() const noexcept{
+    return (size == 0);
   }
 
   // type Size() specifiers; // (concrete function should not throw exceptions)
-  virtual ulong Size() const noexcept{
+  virtual inline ulong Size() const noexcept{
     return size;
   }
 };
@@ -79,7 +79,7 @@ public:
 
   // Destructor
   // ~ClearableContainer() specifiers
-  ~ClearableContainer() = default;
+  virtual ~ClearableContainer() = default;
 
   /* ************************************************************************ */
 
@@ -124,7 +124,7 @@ public:
 
   // Destructor
   // ~ResizableContainer() specifiers
-  ~ResizableContainer() = default;
+  virtual ~ResizableContainer() = default;
   /* ************************************************************************ */
 
   // Copy assignment
@@ -146,7 +146,7 @@ public:
 
   // type Resize(argument) specifiers;
   // Vedere se conviene definirlo o farlo puro.
-  virtual void Resize(ulong resize) = 0;
+  virtual void Resize(ulong) = 0;
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)

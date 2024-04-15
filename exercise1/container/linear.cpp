@@ -1,25 +1,24 @@
 #include "linear.hpp"
 namespace lasd {
 
-template <typename Data>
-inline const Data &LinearContainer<Data>::Front() const
-{
-    return operator[](0);
-}
+    template <typename Data>
+    inline const Data &LinearContainer<Data>::Front() const{
+        return operator[](0);
+    }
 
     template <typename Data>
-    inline Data& LinearContainer<Data>::Front(){
-        return operator[] (0);
+    inline Data &LinearContainer<Data>::Front(){
+        return operator[](0);
     }
 
     template <typename Data>
     inline const Data& LinearContainer<Data>::Back() const{
-        return operator[] (size-1);
+        return operator[](size-1);
     }
 
     template <typename Data>
     inline Data& LinearContainer<Data>::Back(){
-        return operator[] (size-1);
+        return operator[](size-1);
     }
 
     template <typename Data>
@@ -63,7 +62,7 @@ inline const Data &LinearContainer<Data>::Front() const
     }
 
     template <typename Data>
-    ulong SortableLinearContainer<Data>::Partition(ulong start, ulong end){
+    ulong SortableLinearContainer<Data>::Partition(ulong start, ulong end) noexcept{
         Data pivotValue = (*this)[start];
         ulong pivotPosition = start;
         for(ulong position = start + 1; position <= end; ++position){
@@ -77,7 +76,7 @@ inline const Data &LinearContainer<Data>::Front() const
     }
 
     template <typename Data>
-    void SortableLinearContainer<Data>::QuickSort(ulong start, ulong end){
+    void SortableLinearContainer<Data>::QuickSort(ulong start, ulong end) noexcept{
         if(start < end){
             ulong partition = Partition(start, end);
             QuickSort(start, partition-1);
@@ -86,8 +85,7 @@ inline const Data &LinearContainer<Data>::Front() const
     }
 
     template <typename Data>
-    void SortableLinearContainer<Data>::Sort() noexcept
-    {
+    void SortableLinearContainer<Data>::Sort() noexcept{
         ulong start = 0;
         ulong end = size - 1; 
         QuickSort(start, end);

@@ -13,7 +13,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class Queue {
+class Queue : virtual public ClearableContainer{
   // Must extend ClearableContainer
 
 private:
@@ -28,20 +28,27 @@ public:
 
   // Destructor
   // ~Queue() specifiers
-
+  ~Queue() = default;
   /* ************************************************************************ */
 
   // Copy assignment
   // type operator=(argument); // Copy assignment of abstract types is not possible.
 
+  Queue &operator=(const Queue &) = delete;
+
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
+
+  Queue &operator=(Queue &&) noexcept = delete;
 
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+
+  bool operator==(const Data &) const noexcept = delete;
+  bool operator!=(const Data &) const noexcept = delete;
 
   /* ************************************************************************ */
 
@@ -53,6 +60,13 @@ public:
   // type HeadNDequeue() specifiers; // (concrete function must throw std::length_error when empty)
   // type Enqueue(argument) specifiers; // Copy of the value
   // type Enqueue(argument) specifiers; // Move of the value
+
+  virtual const Data &Head() const = 0;
+  virtual Data &Head() = 0;
+  virtual void Dequeue() = 0;
+  virtual Data HeadNDequeue() = 0;
+  virtual void Enqueue(const Data &) = 0;
+  virtual void Enqueue(Data &&) = 0;
 
 };
 

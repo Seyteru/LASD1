@@ -43,8 +43,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
-  inline bool operator==(const LinearContainer &) const noexcept;
-  inline bool operator!=(const LinearContainer &) const noexcept;
+  inline bool operator==(const LinearContainer &) const noexcept = delete;
+  inline bool operator!=(const LinearContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member functions
@@ -133,14 +133,14 @@ public:
   SortableLinearContainer &operator=(const SortableLinearContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not be possible.
-  SortableLinearContainer &operator=(SortableLinearContainer &&) = delete;
+  SortableLinearContainer &operator=(SortableLinearContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
-  inline bool operator==(const SortableLinearContainer &) const noexcept;
-  inline bool operator!=(const SortableLinearContainer &) const noexcept;
+  inline bool operator==(const SortableLinearContainer &) const noexcept = delete;
+  inline bool operator!=(const SortableLinearContainer &) const noexcept = delete;
   /* ************************************************************************ */
 
   // Specific member function
@@ -150,8 +150,8 @@ public:
 protected:
   // Auxiliary member functions
   //SortMethod()
-  void QuickSort(ulong, ulong);
-  ulong Partition(ulong, ulong);
+  void QuickSort(ulong, ulong) noexcept;
+  ulong Partition(ulong, ulong) noexcept;
   // ...
 
 };

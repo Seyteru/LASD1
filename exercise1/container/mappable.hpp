@@ -87,7 +87,7 @@ public:
   PreOrderMappableContainer &operator=(const PreOrderMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  PreOrderMappableContainer &operator=(PreOrderMappableContainer &&) = delete;
+  PreOrderMappableContainer &operator=(PreOrderMappableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
@@ -140,7 +140,7 @@ public:
   PostOrderMappableContainer &operator=(const PostOrderMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  PostOrderMappableContainer &operator=(PostOrderMappableContainer &&) = delete;
+  PostOrderMappableContainer &operator=(PostOrderMappableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
@@ -192,7 +192,7 @@ public:
   InOrderMappableContainer &operator=(const InOrderMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  InOrderMappableContainer &operator=(InOrderMappableContainer &&) = delete;
+  InOrderMappableContainer &operator=(InOrderMappableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators
@@ -244,7 +244,7 @@ public:
   BreadthMappableContainer &operator=(const BreadthMappableContainer &) = delete;
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
-  BreadthMappableContainer &operator=(BreadthMappableContainer &&) = delete;
+  BreadthMappableContainer &operator=(BreadthMappableContainer &&) noexcept = delete;
   /* ************************************************************************ */
 
   // Comparison operators

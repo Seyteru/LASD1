@@ -13,7 +13,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class Stack {
+class Stack : virtual public ClearableContainer{
   // Must extend ClearableContainer
 
 private:
@@ -29,19 +29,28 @@ public:
   // Destructor
   // ~Stack() specifiers
 
+  ~Stack() = default;
+
   /* ************************************************************************ */
 
   // Copy assignment
   // type operator=(argument); // Copy assignment of abstract types is not possible.
 
+  Stack &operator=(const Stack &) = delete;
+
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
+
+  Stack &operator=(Stack &&) noexcept = delete;
 
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+
+  bool operator==(const Stack &) const noexcept = delete;
+  bool operator!=(const Stack &) const noexcept = delete;
 
   /* ************************************************************************ */
 
@@ -53,6 +62,13 @@ public:
   // type TopNPop() specifiers; // (concrete function must throw std::length_error when empty)
   // type Push(argument) specifiers; // Copy of the value
   // type Push(argument) specifiers; // Move of the value
+
+  virtual const Data &Top() const = 0;
+  virtual Data &Top() = 0;
+  virtual void Pop() = 0;
+  virtual Data TopNPop() = 0;
+  virtual Data Push(const Data &) = 0;
+  virtual Data Puhs(Data &&) = 0;
 
 };
 
