@@ -65,13 +65,13 @@ namespace lasd {
     ulong SortableLinearContainer<Data>::Partition(ulong start, ulong end){
         Data pivotValue = (*this)[start];
         ulong pivotPosition = start;
-        for(ulong position = start + 1; position < end; ++position){
+        for(ulong position = start + 1; position <= end; position++){
             if((*this)[position] < pivotValue){
-                std::swap((*this)[pivotPosition + 1], (*this)[position]);
-                std::swap((*this)[pivotPosition], (*this)[pivotPosition + 1]);
                 pivotPosition++;
+                std::swap((*this)[pivotPosition], (*this)[position]);
             }
         }
+        std::swap((*this)[start], (*this)[pivotPosition]);
         return pivotPosition;
     }
 
@@ -79,13 +79,15 @@ namespace lasd {
     void SortableLinearContainer<Data>::QuickSort(ulong start, ulong end){
         if(start < end){
             ulong partition = Partition(start, end);
-            QuickSort(start, partition);
-            QuickSort(partition+1, end);
+            if(partition != 0){
+                QuickSort(start, partition - 1);
+                QuickSort(partition + 1, end);
+            }
         }
     }
 
     template <typename Data>
-    void SortableLinearContainer<Data>::Sort() noexcept{
+    void SortableLinearContainer<Data>::Sort(){
         ulong start = 0;
         ulong end = size - 1; 
         QuickSort(start, end);

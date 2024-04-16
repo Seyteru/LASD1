@@ -103,11 +103,12 @@ namespace lasd {
             Clear();
         } else if(size != newSize){
             Data *tempElement = new Data[newSize]{};
-            ulong minimumSize = (size < newSize) ? size : newSize;
-            for(ulong index = 0; index < minimumSize; ++index){
-                elements[index] = tempElement[index];
+            ulong minimumSize;
+            minimumSize = (size < newSize) ? size : newSize;
+            for(ulong index = 0; index < minimumSize; index++){
+                std::swap(elements[index], tempElement[index]);
             }
-            elements = tempElement;
+            std::swap(elements, tempElement);
             size = newSize;
             delete[] tempElement;
         }
@@ -179,7 +180,8 @@ namespace lasd {
         ulong index = 0;
         container.Traverse(
             [this, &index](const Data &data){
-                elements[index++] = data;
+                elements[index] = data;
+                index++;
             }
         );
     }
@@ -189,7 +191,8 @@ namespace lasd {
         ulong index = 0;
         container.Map(
             [this, &index](Data &data){
-                elements[index++] = std::move(data);
+                elements[index] = std::move(data);
+                index++;
             }
         );
     }

@@ -13,7 +13,7 @@ namespace lasd {
 
     template <typename Data>
     template <typename Accumulator>
-    Accumulator TraversableContainer<Data>::Fold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
+    inline Accumulator TraversableContainer<Data>::Fold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
         Traverse(
             [foldFun, &acc](const Data &dat){
                 acc = foldFun(dat, acc);
@@ -24,7 +24,7 @@ namespace lasd {
 
     template <typename Data>
     template <typename Accumulator>
-    Accumulator PreOrderTraversableContainer<Data>::PreOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{ 
+    inline Accumulator PreOrderTraversableContainer<Data>::PreOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{ 
         PreOrderTraverse(
             [foldFun, &acc](const Data &dat){
                 acc = foldFun(dat, acc);
@@ -40,7 +40,7 @@ namespace lasd {
 
     template <typename Data>
     template <typename Accumulator>
-    Accumulator PostOrderTraversableContainer<Data>::PostOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
+    inline Accumulator PostOrderTraversableContainer<Data>::PostOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
         PostOrderTraverse(
             [foldFun, &acc](const Data &dat){
                 acc = foldFun(dat, acc);
@@ -56,7 +56,7 @@ namespace lasd {
 
     template <typename Data>
     template <typename Accumulator>
-    Accumulator InOrderTraversableContainer<Data>::InOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
+    inline Accumulator InOrderTraversableContainer<Data>::InOrderFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
         InOrderTraverse(
             [foldFun, &acc](const Data &dat){
                 acc = foldFun(dat, acc);
@@ -72,7 +72,7 @@ namespace lasd {
 
     template <typename Data>
     template <typename Accumulator>
-    Accumulator BreadthTraversableContainer<Data>::BreadthFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
+    inline Accumulator BreadthTraversableContainer<Data>::BreadthFold(FoldFun<Accumulator> foldFun, Accumulator acc) const{
         BreadthFold(
             [foldFun, &acc](const Data &dat){
                 acc = foldFun(dat, acc);

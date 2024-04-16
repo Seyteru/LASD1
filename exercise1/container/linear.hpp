@@ -146,12 +146,13 @@ public:
   // Specific member function
 
   // type Sort() specifiers;
-  virtual void Sort() noexcept;
+  virtual void Sort();
+
 protected:
   // Auxiliary member functions
   //SortMethod()
-  virtual void QuickSort(ulong, ulong);
-  virtual ulong Partition(ulong, ulong);
+  void QuickSort(ulong, ulong);
+  ulong Partition(ulong, ulong);
   // ...
 
 };
