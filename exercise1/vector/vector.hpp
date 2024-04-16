@@ -55,7 +55,7 @@ public:
 
   // Destructor
   // ~Vector() specifiers;
-  virtual ~Vector();
+  ~Vector();
   /* ************************************************************************ */
 
   // Copy assignment
@@ -153,7 +153,7 @@ public:
 
   // Destructor
   // ~SortableVector() specifiers;
-  virtual ~SortableVector();
+  ~SortableVector();
   /* ************************************************************************ */
 
   // Copy assignment

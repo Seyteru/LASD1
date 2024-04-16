@@ -179,7 +179,7 @@ public:
   // type PostOrderTraverse(arguments) specifiers;
 
   using typename TraversableContainer<Data>::TraverseFun;
-  virtual inline void PostOrderTraverse(TraverseFun) const = 0;
+  virtual void PostOrderTraverse(TraverseFun) const = 0;
 
   // template <typename Accumulator>
   // using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;

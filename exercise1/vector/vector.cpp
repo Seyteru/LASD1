@@ -169,9 +169,9 @@ namespace lasd {
 
     //Specific Constructors
     template <typename Data>
-    SortableVector<Data>::SortableVector(const ulong newsize){
-        size = newsize;
-        elements = new Data[size]{};
+    SortableVector<Data>::SortableVector(const ulong newSize){
+        elements = new Data[newSize]{};
+        size = newSize;
     }
 
     template <typename Data>
@@ -212,7 +212,7 @@ namespace lasd {
     //Destructor
     template <typename Data>
     SortableVector<Data>::~SortableVector(){
-        delete[] elements;
+        Vector<Data>::Clear();
     }
 
     //Operator
