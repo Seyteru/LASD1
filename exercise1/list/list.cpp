@@ -31,9 +31,9 @@ namespace lasd {
 
     template <typename Data>
     List<Data>::List(List<Data> &&list) noexcept{
-        std::swap(head, list.head);
-        std::swap(tail, list.tail);
-        std::swap(size, list.size);
+        std::swap(list.head, head);
+        std::swap(list.tail, tail);
+        std::swap(list.size, size);
     }
 
     template <typename Data>
@@ -43,37 +43,35 @@ namespace lasd {
 
     template <typename Data>
     List<Data> &List<Data>::operator=(const List<Data> &list){
-        if(size <= list.size){
-            if(tail == nullptr){
-                List *tempList = new List<Data>(list);
-                std::swap(*tempList, *this);
-                delete tempList;
-            } else{
-                Node *name = list.head;
-            }
-        }
+        List<Data> *tempList = new List<Data>(list);
+        std::swap(*tempList, *this);
+        delete tempList;
+        return *this;
     }
 
     template <typename Data>
     List<Data> &List<Data>::operator=(List<Data> &&list) noexcept{
-
+        std::swap(head, list.head);
+        std::swap(tail, list.tail);
+        std::swap(size, list.size);
+        return *this;
     }
 
     template <typename Data>
-    inline bool List<Data>::operator==(const List &lista) const noexcept{
-        if(size != lista.size){
-            return false;
-        } else {
+    inline bool List<Data>::operator==(const List &list) const noexcept{
+        if(size == list.size){
             Node *lista1 = head;
-            Node *lista2 = lista.head;
+            Node *lista2 = list.head;
             while(lista1 != nullptr){
                 if(lista1 -> element != lista2 -> element){
                     return false;
                 }
-                lista1 -> next;
-                lista2 -> next;
+                lista1 = lista1 -> next;
+                lista2 = lista2 -> next;
             }
             return true;
+        } else{
+            return false;
         }
     }
 
@@ -125,7 +123,9 @@ namespace lasd {
     template <typename Data>
     Data List<Data>::FrontNRemove(){
         if(head != nullptr){
-            //TODO
+            Data dataRemoved = Front();
+            RemoveFromFront();
+            return dataRemoved;
         } else{
             throw std::length_error("Access to Empty List");
         }
@@ -175,7 +175,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    bool List<Data>::Insert(Data &&data){
+    bool List<Data>::Insert(Data &&data) noexcept{
         for(Node *current = head; current !=nullptr; current = current -> next){
             if(current -> element == data){
                 return false;
@@ -185,107 +185,150 @@ namespace lasd {
         return true;
     }
 
-    // template <typename Data>
-    // bool List<Data>::Remove(const Data &data){
-    //     Node *end = nullptr;
-    //     for(Node **current = &head; *current != nullptr; end = *current, current = &((/*ToDo*/))){
-    //         if((*current) -> element == data){
-    //             Node *node = *current;
-    //             *current = node -> next;
-    //             node -> next = nullptr;
-    //             delete node;
-    //             size--;
-    //             if(tail == node){
-    //                 tail = end;
-    //             }
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
+    template <typename Data>
+    bool List<Data>::Remove(const Data &data){
+        Node *last = nullptr;
+        for(Node **current = &head; *current != nullptr; last = *current, current = &((last -> next))){
+            if((*current) -> element == data){
+                Node *node = *current;
+                *current = node -> next;
+                node -> next = nullptr;
+                delete node;
+                size--;
+                if(tail == node){
+                    tail = last;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 
     template <typename Data>
     const Data &List<Data>::operator[](const ulong index) const{
-        if(index < size){
-            Node *current = head;
-            for(ulong curIndex = 0; curIndex < index; curIndex++, current = current -> next){
-                return current -> element;
-            }
-        } else{
+        if(index >= size){
             throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
+        } else{
+            Node *current = head;
+            ulong currentIndex = 0;
+            while(currentIndex != index){
+                current = current -> next;
+                currentIndex++;
+            }
+            return current -> element;
         }
     }
 
     template <typename Data>
     Data &List<Data>::operator[](const ulong index){
-
+        if(index >= size){
+            throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
+        } else{
+            Node *current = head;
+            ulong currentIndex = 0;
+            while(currentIndex != index){
+                current = current -> next;
+                currentIndex++;
+            }
+            return current -> element;
+        }
     }
 
     template <typename Data>
     const Data &List<Data>::Front() const{
-
+        if(head == nullptr){
+            throw std::length_error("Invalid Access to empty Vector");
+        } else{
+            return head -> element;
+        }
     }
 
     template <typename Data>
     Data &List<Data>::Front(){
-
+        if(head == nullptr){
+            throw std::length_error("Invalid Access to empty Vector");
+        } else{
+            return head -> element;
+        }
     }
 
     template <typename Data>
     const Data &List<Data>::Back() const{
-
+        if(head == nullptr){
+            throw std::length_error("Invalid Access to empty Vector");
+        } else{
+            return tail -> element;
+        }
     }
 
     template <typename Data>
     Data &List<Data>::Back(){
-
+        if(head == nullptr){
+            throw std::length_error("Invalid Access to empty Vector");
+        } else{
+            return tail -> element;
+        }
     }
 
     template <typename Data>
-    void List<Data>::Traverse(TraverseFun) const{
-
+    void List<Data>::Traverse(TraverseFun traverseFun) const{
+        PreOrderTraverse(traverseFun);
     }
 
     template <typename Data>
-    void List<Data>::PreOrderTraverse(TraverseFun) const{
-
+    void List<Data>::PreOrderTraverse(TraverseFun traverseFun) const{
+        for(ulong index = 0; index < size; index++){
+            traverseFun(operator[](index));
+        }
     }
 
     template <typename Data>
-    void List<Data>::PostOrderTraverse(TraverseFun) const{
-
+    void List<Data>::PostOrderTraverse(TraverseFun traverseFun) const{
+        ulong index = size;
+        while(index > 0){
+            traverseFun(operator[](--index));
+        }
     }
 
     template <typename Data>
-    void List<Data>::Map(MapFun){
-
+    void List<Data>::Map(MapFun mapFun){
+        PreOrderMap(mapFun);
     }
 
     template <typename Data>
-    void List<Data>::PreOrderMap(MapFun){
-
+    void List<Data>::PreOrderMap(MapFun mapFun){
+        for(ulong index = 0; index < size; index++){
+            mapFun(operator[](index));
+        }
     }
 
     template <typename Data>
-    void List<Data>::PostOrderMap(MapFun){
-        
+    void List<Data>::PostOrderMap(MapFun mapFun){
+        ulong index = size;
+        while(index > 0){
+            mapFun(operator[](--index));
+        }
     }
 
     template <typename Data>
-    inline List<Data>::Node::~Node(){
-
-    }
-    template <typename Data>
-    bool List<Data>::Node::operator==(const Node &) const noexcept{
-        return false;
-    }
-    template <typename Data>
-    inline bool List<Data>::Node::operator!=(const Node &) const noexcept{
-        return false;
+    bool List<Data>::Node::operator==(const Node &node) const noexcept{
+        return (element == node -> element);
     }
 
     template <typename Data>
-    List<Data>::Node *List<Data>::Node::Clone(Node *){
-        return nullptr;
+    inline bool List<Data>::Node::operator!=(const Node &node) const noexcept{
+        return !(*this == node);
     }
+
+    template <typename Data>
+    List<Data>::Node *List<Data>::Node::Clone(Node *node){
+        if(next == nullptr){
+            return node;
+        } else{
+            Node *newNode = new Node(element);
+            newNode -> next = next -> Clone(node);
+            return newNode;
+        }
+    }
+
 }

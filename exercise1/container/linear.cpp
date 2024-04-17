@@ -2,6 +2,28 @@
 namespace lasd {
 
     template <typename Data>
+    inline bool LinearContainer<Data>::operator==(const LinearContainer &container) const noexcept{
+        if(size == container.size){
+            bool isEqual = true;
+            ulong index = 0;
+            container.Traverse(
+                [this, &isEqual, &index](const Data &data){
+                    isEqual = isEqual && ((*this)[index] == data);
+                    index++;
+                }
+            );
+            return isEqual;
+        } else{
+            return false;
+        }
+    }
+
+    template <typename Data>
+    inline bool LinearContainer<Data>::operator!=(const LinearContainer &container) const noexcept{
+        return !(*this == container);
+    }
+
+    template <typename Data>
     inline const Data &LinearContainer<Data>::Front() const{
         return operator[](0);
     }
@@ -92,4 +114,7 @@ namespace lasd {
         ulong end = size - 1; 
         QuickSort(start, end);
     }
+
+    
+
 }

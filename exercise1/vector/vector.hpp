@@ -47,7 +47,7 @@ public:
 
   // Copy constructor
   // Vector(argument) specifiers;
-  Vector (const Vector &);
+  Vector(const Vector &);
   // Move constructor
   // Vector(argument) specifiers;
   Vector(Vector &&) noexcept;
@@ -69,8 +69,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
-  bool operator==(const Vector &) const noexcept;
-  bool operator!=(const Vector &) const noexcept;
+  inline bool operator==(const Vector &) const noexcept;
+  inline bool operator!=(const Vector &) const noexcept;
 
   /* ************************************************************************ */
 

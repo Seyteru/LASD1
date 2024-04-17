@@ -68,7 +68,7 @@ public:
   virtual void Pop() = 0;
   virtual Data TopNPop() = 0;
   virtual Data Push(const Data &) = 0;
-  virtual Data Puhs(Data &&) = 0;
+  virtual Data Push(Data &&) = 0;
 
 };
 

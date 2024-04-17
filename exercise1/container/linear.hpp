@@ -43,8 +43,8 @@ public:
   // Comparison operators
   // type operator==(argument) specifiers; // Comparison of abstract types is possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
-  inline bool operator==(const LinearContainer &) const noexcept = delete;
-  inline bool operator!=(const LinearContainer &) const noexcept = delete;
+  inline bool operator==(const LinearContainer &) const noexcept;
+  inline bool operator!=(const LinearContainer &) const noexcept;
   /* ************************************************************************ */
 
   // Specific member functions

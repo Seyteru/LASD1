@@ -13,7 +13,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class DictionaryContainer : TestableContainer<Data>{
+class DictionaryContainer : virtual public TestableContainer<Data>{
   // Must extend TestableContainer<Data>
 
 private:
@@ -28,7 +28,7 @@ public:
 
   // Destructor
   // ~DictionaryContainer() specifiers
-  virtual ~DictionaryContainer() = delete;
+  virtual ~DictionaryContainer() = default;
   /* ************************************************************************ */
 
   // Copy assignment
@@ -53,7 +53,7 @@ public:
   // type Remove(argument) specifiers;
   virtual bool Insert(const Data &) = 0;
   virtual bool Insert(Data &&) noexcept = 0;
-  virtual bool Remove(Data &&) = 0;
+  virtual bool Remove(const Data &) = 0;
   // type InsertAll(argument) specifiers; // Copy of the value; From TraversableContainer; True if all are inserted
   // type InsertAll(argument) specifiers; // Move of the value; From MappableContainer; True if all are inserted
   // type RemoveAll(argument) specifiers; // From TraversableContainer; True if all are removed
@@ -66,6 +66,7 @@ public:
   virtual bool InsertSome(const TraversableContainer<Data> &);
   virtual bool InsertSome(MappableContainer<Data> &&);
   virtual bool RemoveSome(const TraversableContainer<Data> &);
+
 };
 
 /* ************************************************************************** */

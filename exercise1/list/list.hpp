@@ -15,7 +15,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class List : virtual public ClearableContainer, virtual public LinearContainer<Data>, virtual DictionaryContainer<Data>{
+class List : virtual public ClearableContainer, virtual public LinearContainer<Data>, virtual public DictionaryContainer<Data>{
   // Must extend ClearableContainer,
   //             LinearContainer<Data>,
   //             DictionaryContainer<Data>
@@ -57,14 +57,14 @@ protected:
     }
 
     // Destructor
-    virtual ~Node();
+    ~Node() = default;
 
     // Comparison operators
     bool operator==(const Node &) const noexcept;
     inline bool operator!=(const Node &) const noexcept;
 
     // Specific member functions
-    virtual Node *Clone(Node *);
+    Node *Clone(Node *);
 
   };
 
@@ -104,7 +104,7 @@ public:
   // Destructor
   // ~List() specifiers;
 
-  virtual ~List();
+  ~List();
 
   /* ************************************************************************ */
 
@@ -164,7 +164,7 @@ public:
   // type Remove(argument) specifier;
 
   bool Insert(const Data &) override;
-  bool Insert(Data &&) override;
+  bool Insert(Data &&) noexcept override;
   bool Remove(const Data &) override;
 
   /* ************************************************************************ */
