@@ -271,7 +271,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    void List<Data>::Traverse(TraverseFun traverseFun) const{
+    inline void List<Data>::Traverse(TraverseFun traverseFun) const{
         PreOrderTraverse(traverseFun);
     }
 
@@ -291,7 +291,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    void List<Data>::Map(MapFun mapFun){
+    inline void List<Data>::Map(MapFun mapFun){
         PreOrderMap(mapFun);
     }
 
@@ -311,7 +311,31 @@ namespace lasd {
     }
 
     template <typename Data>
-    bool List<Data>::Node::operator==(const Node &node) const noexcept{
+    List<Data>::Node::Node(const Data &data){
+        element = data;
+        next = nullptr;
+    }
+
+    template <typename Data>
+    List<Data>::Node::Node(Data &&data) noexcept
+    {
+        std::swap(element, data);
+    }
+
+    template <typename Data>
+    inline List<Data>::Node::Node(Node &&node) noexcept{
+        std::swap(element, node.element);
+        std::swap(next, node.next);
+    }
+
+    template <typename Data>
+    List<Data>::Node::~Node(){
+        delete next;
+    }
+
+    template <typename Data>
+    bool List<Data>::Node::operator==(const Node &node) const noexcept
+    {
         return (element == node -> element);
     }
 
@@ -330,5 +354,7 @@ namespace lasd {
             return newNode;
         }
     }
+
+
 
 }

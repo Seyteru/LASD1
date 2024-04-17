@@ -11,6 +11,7 @@ namespace lasd {
 
     template <typename Data>
     Vector<Data>::Vector(const TraversableContainer<Data> &container){
+        std::cout<<"!!!!!!Vector Constructor Traversable!!!!!!"<<std::endl;
         ulong index = 0;
         container.Traverse(
             [this, &index](const Data &data){
@@ -22,6 +23,7 @@ namespace lasd {
 
     template <typename Data>
     Vector<Data>::Vector(MappableContainer<Data> &&container){
+        std::cout<<"!!!!!!Vector Constructor Mappable!!!!!!"<<std::endl;
         ulong index = 0;
         container.Map(
             [this, &index](Data &data){
@@ -177,17 +179,21 @@ namespace lasd {
 
     template <typename Data>
     SortableVector<Data>::SortableVector(const TraversableContainer<Data> &container){
+        std::cout<<"!!!!!!SortableVector Constructor Traversable!!!!!!"<<std::endl;
         ulong index = 0;
         container.Traverse(
             [this, &index](const Data &data){
+                std::cout<<"!!!!!!Before elements assegnation!!!!!!"<<std::endl;
                 elements[index] = data;
                 index++;
+                std::cout<<"!!!!!!After elements assegnation!!!!!!"<<std::endl;
             }
         );
     }
 
     template <typename Data>
     SortableVector<Data>::SortableVector(MappableContainer<Data> &&container){
+        std::cout<<"!!!!!!SortableVector Constructor Mappable!!!!!!"<<std::endl;
         ulong index = 0;
         container.Map(
             [this, &index](Data &data){

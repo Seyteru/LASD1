@@ -47,10 +47,10 @@ public:
 
   // Copy constructor
   // Vector(argument) specifiers;
-  Vector(const Vector &);
+  Vector(const Vector<Data> &);
   // Move constructor
   // Vector(argument) specifiers;
-  Vector(Vector &&) noexcept;
+  Vector(Vector<Data> &&) noexcept;
   /* ************************************************************************ */
 
   // Destructor
@@ -60,17 +60,17 @@ public:
 
   // Copy assignment
   // type operator=(argument) specifiers;
-  Vector &operator=(const Vector &);
+  Vector &operator=(const Vector<Data> &);
   // Move assignment
   // type operator=(argument) specifiers;
-  Vector &operator=(Vector &&) noexcept;
+  Vector &operator=(Vector<Data> &&) noexcept;
   /* ************************************************************************ */
 
   // Comparison operators
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
-  inline bool operator==(const Vector &) const noexcept;
-  inline bool operator!=(const Vector &) const noexcept;
+  inline bool operator==(const Vector<Data> &) const noexcept;
+  inline bool operator!=(const Vector<Data> &) const noexcept;
 
   /* ************************************************************************ */
 
@@ -122,7 +122,6 @@ protected:
 
   // using Container::???;
   using Container::size;
-  using Vector<Data>::operator[];
   using Vector<Data>::elements;
   // ...
 
@@ -145,10 +144,10 @@ public:
 
   // Copy constructor
   // SortableVector(argument) specifiers;
-  SortableVector(const SortableVector &);
+  SortableVector(const SortableVector<Data> &);
   // Move constructor
   // SortableVector(argument) specifiers;
-  SortableVector(SortableVector &&) noexcept;
+  SortableVector(SortableVector<Data> &&) noexcept;
   /* ************************************************************************ */
 
   // Destructor
@@ -158,10 +157,10 @@ public:
 
   // Copy assignment
   // type operator=(argument) specifiers;
-  SortableVector &operator=(const SortableVector &);
+  SortableVector &operator=(const SortableVector<Data> &);
   // Move assignment
   // type operator=(argument) specifiers;
-  SortableVector &operator=(SortableVector &&) noexcept;
+  SortableVector &operator=(SortableVector<Data> &&) noexcept;
 
 protected:
 

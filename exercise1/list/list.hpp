@@ -33,38 +33,30 @@ protected:
 
     // Data
     Data element;
-    Node* next = nullptr;
+    struct Node* next = nullptr;
 
     // Default Constructor
     Node() = default;
 
     // Specific constructors
-    Node(const Data &value){
-      element = value;
-      next = nullptr;
-    }
+    Node(const Data &);
+    Node(Data &&data) noexcept;
 
     // Copy constructor
-    Node(const Node &node){
-      element = node.element;
-      next = node.next;
-    }
+    inline Node(const Node &node) : element(node.element){};
 
     // Move constructor
-    Node(Node &&node) noexcept{
-      std::swap(element, node.element);
-      std::swap(next, node.next);
-    }
+    inline Node(Node &&node) noexcept;
 
     // Destructor
-    ~Node() = default;
+    virtual ~Node();
 
     // Comparison operators
     bool operator==(const Node &) const noexcept;
     inline bool operator!=(const Node &) const noexcept;
 
     // Specific member functions
-    Node *Clone(Node *);
+    virtual Node *Clone(Node *);
 
   };
 
@@ -92,12 +84,12 @@ public:
   // Copy constructor
   // List(argument) specifiers;
 
-  List(const List &);
+  List(const List<Data> &);
 
   // Move constructor
   // List(argument) specifiers;
 
-  List(List &&) noexcept;
+  List(List<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
@@ -111,12 +103,12 @@ public:
   // Copy assignment
   // type operator=(argument) specifiers;
 
-  List &operator=(const List &);
+  List &operator=(const List<Data> &);
 
   // Move assignment
   // type operator=(argument) specifiers;
 
-  List &operator=(List &&) noexcept;
+  List &operator=(List<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
@@ -124,8 +116,8 @@ public:
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
 
-  inline bool operator==(const List &) const noexcept;
-  inline bool operator!=(const List &) const noexcept;
+  inline bool operator==(const List<Data> &) const noexcept;
+  inline bool operator!=(const List<Data> &) const noexcept;
 
   /* ************************************************************************ */
 
@@ -197,7 +189,7 @@ public:
   // type Traverse(arguments) specifiers; // Override TraversableContainer member
 
   using typename TraversableContainer<Data>::TraverseFun;
-  void Traverse(TraverseFun) const override;
+  inline void Traverse(TraverseFun) const override;
 
   /* ************************************************************************ */
 
@@ -223,7 +215,7 @@ public:
   // type Map(argument) specifiers; // Override MappableContainer member
 
   using typename MappableContainer<Data>::MapFun;
-  void Map(MapFun) override;
+  inline void Map(MapFun) override;
 
   /* ************************************************************************ */
 

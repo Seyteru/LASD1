@@ -69,19 +69,19 @@ public:
   // type Traverse(argument) specifiers; // Override TraversableContainer member
 
   using typename TraversableContainer<Data>::TraverseFun;
-  inline void Traverse(TraverseFun) const override;
+  virtual void Traverse(TraverseFun) const override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from PreOrderTraversableContainer)
 
   // type PreOrderTraverse(argument) specifiers; // Override PreOrderTraversableContainer member
-  inline void PreOrderTraverse(TraverseFun) const override;
+  virtual void PreOrderTraverse(TraverseFun) const override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from PostOrderTraversableContainer)
 
   // type PostOrderTraverse(argument) specifiers; // Override PostOrderTraversableContainer member
-  inline void PostOrderTraverse(TraverseFun) const override;
+  virtual void PostOrderTraverse(TraverseFun) const override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from MappableContainer)
@@ -90,19 +90,19 @@ public:
   // type Map(argument) specifiers; // Override MappableContainer member
 
   using typename MappableContainer<Data>::MapFun;
-  inline void Map(MapFun) override;
+  virtual void Map(MapFun) override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from PreOrderMappableContainer)
 
   // type PreOrderMap(argument) specifiers; // Override PreOrderMappableContainer member
-  inline void PreOrderMap(MapFun) override;
+  virtual void PreOrderMap(MapFun) override;
   /* ************************************************************************ */
 
   // Specific member function (inherited from PostOrderMappableContainer)
 
   // type PostOrderMap(argument) specifiers; // Override PostOrderMappableContainer member
-  inline void PostOrderMap(MapFun) override;
+  virtual void PostOrderMap(MapFun) override;
 };
 
 /* ************************************************************************** */
