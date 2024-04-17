@@ -25,7 +25,7 @@ private:
 protected:
 
   // using Vector<Data>::???;
-
+  using Vector<Data>::elements;
   // ...
 
 public:

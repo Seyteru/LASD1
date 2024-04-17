@@ -210,11 +210,7 @@ namespace lasd {
             throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
         } else{
             Node *current = head;
-            ulong currentIndex = 0;
-            while(currentIndex != index){
-                current = current -> next;
-                currentIndex++;
-            }
+            for(ulong idx = 0; idx < index; ++idx, current = current -> next) {}
             return current -> element;
         }
     }
@@ -225,11 +221,7 @@ namespace lasd {
             throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
         } else{
             Node *current = head;
-            ulong currentIndex = 0;
-            while(currentIndex != index){
-                current = current -> next;
-                currentIndex++;
-            }
+            for(ulong idx = 0; idx < index; ++idx, current = current -> next) {}
             return current -> element;
         }
     }

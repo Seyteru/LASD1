@@ -32,7 +32,7 @@ public:
   // Default constructor
   // StackLst() specifier;
 
-  StackLst() = default;
+  inline StackLst() = default;
 
   /* ************************************************************************ */
 
