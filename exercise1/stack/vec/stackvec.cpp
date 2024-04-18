@@ -112,8 +112,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    void StackVec<Data>::Reduce(){
-
+    void StackVec<Data>::Reduce()
+    {
     }
-
 }

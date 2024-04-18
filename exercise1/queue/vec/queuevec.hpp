@@ -25,7 +25,11 @@ private:
 protected:
 
   // using Vector<Data>::???;
-
+  using Vector<Data>::elements;
+  using Vector<Data>::size;
+  int head = 0;
+  int tail = -1;
+  ulong effectiveSize = 0;
   // ...
 
 public:
@@ -124,6 +128,8 @@ public:
 
 protected:
 
+  void Resize(ulong, ulong);
+  void Reduce();
   // Auxiliary functions, if necessary!
 
 };

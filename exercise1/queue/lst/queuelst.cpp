@@ -2,15 +2,15 @@
 
 namespace lasd {
 
-    //These Costructor maybe with Pre and Post Map or Traverse
+    
     // template <typename Data>
     // inline QueueLst<Data>::QueueLst(const TraversableContainer<Data> &container){
-    //     List<Data>(container);
+        
     // }
 
     // template <typename Data>
     // QueueLst<Data>::QueueLst(MappableContainer<Data> &&container){
-    //     List<Data>(std::move(container));
+        
     // }
 
     //Probably not correct

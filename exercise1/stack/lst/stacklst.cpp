@@ -2,16 +2,6 @@
 
 namespace lasd {
 
-    // template <typename Data>
-    // inline StackLst<Data>::StackLst(const TraversableContainer<Data> &container){
-    //     List<Data>(container);
-    // }
-
-    // template <typename Data>
-    // StackLst<Data>::StackLst(MappableContainer<Data> &&container){
-    //     List<Data>(std::move(container));
-    // }
-
     template <typename Data>
     inline StackLst<Data>::StackLst(const StackLst<Data> &stackLst) : List<Data>(stackLst) {}
 
@@ -71,4 +61,5 @@ namespace lasd {
         return List<Data>::InsertAtFront(std::move(data));
     }
 
+    
 }

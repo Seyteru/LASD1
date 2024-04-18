@@ -157,7 +157,8 @@ namespace lasd {
 
     template <typename Data>
     void List<Data>::Clear(){
-        for(ulong index = 0; index < size; index++){
+        ulong cont = size;
+        for(ulong index = 0; index < cont; index++){
             RemoveFromFront();
         }
         size = 0;

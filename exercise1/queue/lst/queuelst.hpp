@@ -43,8 +43,8 @@ public:
   // QueueLst(argument) specifiers; // A stack obtained from a TraversableContainer
   // QueueLst(argument) specifiers; // A stack obtained from a MappableContainer
 
-  QueueLst(const TraversableContainer<Data> &);
-  QueueLst(MappableContainer<Data> &&);
+  QueueLst(const TraversableContainer<Data> &container) : List<Data>(container){};
+  QueueLst(MappableContainer<Data> &&container) : List<Data>(std::move(container)){};
 
   /* ************************************************************************ */
 

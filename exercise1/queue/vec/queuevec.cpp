@@ -86,4 +86,12 @@ namespace lasd {
     void QueueVec<Data>::Clear(){
 
     }
+    template <typename Data>
+    void QueueVec<Data>::Resize(ulong newSize, ulong num){
+        
+    }
+    template <typename Data>
+    void QueueVec<Data>::Reduce(){
+
+    }
 }
