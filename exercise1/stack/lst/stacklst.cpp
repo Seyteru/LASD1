@@ -1,8 +1,48 @@
+#include "stacklst.hpp"
 
 namespace lasd {
 
+    // template <typename Data>
+    // inline StackLst<Data>::StackLst(const TraversableContainer<Data> &container){
+    //     List<Data>(container);
+    // }
+
+    // template <typename Data>
+    // StackLst<Data>::StackLst(MappableContainer<Data> &&container){
+    //     List<Data>(std::move(container));
+    // }
+
     template <typename Data>
-    inline const Data &StackLst<Data>::Top() const{
+    inline StackLst<Data>::StackLst(const StackLst<Data> &stackLst) : List<Data>(stackLst) {}
+
+    template <typename Data>
+    inline StackLst<Data>::StackLst(StackLst<Data> &&stackLst) noexcept : List<Data>(std::move(stackLst)){}
+
+    template <typename Data>
+    inline StackLst<Data> &StackLst<Data>::operator=(const StackLst &stackLst){
+        List<Data>::operator=(stackLst);
+        return *this;
+    }
+
+    template <typename Data>
+    inline StackLst<Data> &StackLst<Data>::operator=(StackLst &&stackLst) noexcept{
+        List<Data>::operator=(stackLst);
+        return *this;
+    }
+
+    template <typename Data>
+    inline bool StackLst<Data>::operator==(const StackLst &stackLst) const noexcept{
+        return List<Data>::operator==(stackLst);
+    }
+
+    template <typename Data>
+    inline bool StackLst<Data>::operator!=(const StackLst &stackLst) const noexcept{
+        return !(*this == stackLst);
+    }
+
+    template <typename Data>
+    inline const Data &StackLst<Data>::Top() const
+    {
         return List<Data>::Front();
     }
 
@@ -27,8 +67,8 @@ namespace lasd {
     }
 
     template <typename Data>
-    inline void StackLst<Data>::Push(Data &&data){
-        return List<Data>::InsertAtFront(data);
+    inline void StackLst<Data>::Push(Data &&data) noexcept{
+        return List<Data>::InsertAtFront(std::move(data));
     }
 
 }

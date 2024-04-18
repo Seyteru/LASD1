@@ -1,8 +1,51 @@
+#include "queuelst.hpp"
 
 namespace lasd {
 
+    //These Costructor maybe with Pre and Post Map or Traverse
+    // template <typename Data>
+    // inline QueueLst<Data>::QueueLst(const TraversableContainer<Data> &container){
+    //     List<Data>(container);
+    // }
+
+    // template <typename Data>
+    // QueueLst<Data>::QueueLst(MappableContainer<Data> &&container){
+    //     List<Data>(std::move(container));
+    // }
+
+    //Probably not correct
     template <typename Data>
-    inline const Data &QueueLst<Data>::Head() const{
+    QueueLst<Data>::QueueLst(const QueueLst<Data> &queueLst) : List<Data>(queueLst) {}
+
+    //Probably not correct
+    template <typename Data>
+    QueueLst<Data>::QueueLst(QueueLst<Data> &&queueLst) noexcept : List<Data>(std::move(queueLst)){}
+
+    template <typename Data>
+    QueueLst<Data> &QueueLst<Data>::operator=(const QueueLst<Data> &queueLst){
+        List<Data>::operator=(queueLst);
+        return *this;
+    }
+
+    template <typename Data>
+    QueueLst<Data> &QueueLst<Data>::operator=(QueueLst<Data> &&queueLst) noexcept{
+        List<Data>::operator=(std::move(queueLst));
+        return *this;
+    }
+
+    template <typename Data>
+    bool QueueLst<Data>::operator==(const QueueLst<Data> &queueLst) const noexcept{
+        return List<Data>::operator==(queueLst);
+    }
+
+    template <typename Data>
+    bool QueueLst<Data>::operator!=(const QueueLst<Data> &queueLst) const noexcept{
+        return !(*this == queueLst);
+    }
+
+    template <typename Data>
+    inline const Data &QueueLst<Data>::Head() const
+    {
         return List<Data>::Front();
     }
 
@@ -27,8 +70,8 @@ namespace lasd {
     }
 
     template <typename Data>
-    inline void QueueLst<Data>::Enqueue(Data &&data){
-        return List<Data>::InsertAtBack(data);
+    inline void QueueLst<Data>::Enqueue(Data &&data) noexcept{
+        return List<Data>::InsertAtBack(std::move(data));
     }
 
 }

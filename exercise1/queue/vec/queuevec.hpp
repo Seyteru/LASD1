@@ -68,12 +68,12 @@ public:
   // Copy assignment
   // type operator=(argument);
 
-  QueueVec &operator=(const QueueVec &);
+  QueueVec &operator=(const QueueVec<Data> &);
 
   // Move assignment
   // type operator=(argument);
 
-  QueueVec &operator=(QueueVec &&) noexcept;
+  QueueVec &operator=(QueueVec<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
@@ -81,8 +81,8 @@ public:
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
 
-  bool operator==(const QueueVec &) const noexcept;
-  bool operator!=(const QueueVec &) const noexcept;
+  bool operator==(const QueueVec<Data> &) const noexcept;
+  bool operator!=(const QueueVec<Data> &) const noexcept;
 
   /* ************************************************************************ */
 
@@ -100,7 +100,7 @@ public:
   void Dequeue() override;
   Data HeadNDequeue() override;
   void Enqueue(const Data &) override;
-  void Enqueue(Data &&) override;
+  void Enqueue(Data &&) noexcept override;
 
   /* ************************************************************************ */
 

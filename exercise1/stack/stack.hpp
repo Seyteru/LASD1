@@ -36,12 +36,12 @@ public:
   // Copy assignment
   // type operator=(argument); // Copy assignment of abstract types is not possible.
 
-  Stack &operator=(const Stack &) = delete;
+  Stack &operator=(const Stack<Data> &) = delete;
 
   // Move assignment
   // type operator=(argument); // Move assignment of abstract types is not possible.
 
-  Stack &operator=(Stack &&) noexcept = delete;
+  Stack &operator=(Stack<Data> &&) noexcept = delete;
 
   /* ************************************************************************ */
 
@@ -49,8 +49,8 @@ public:
   // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
   // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
 
-  bool operator==(const Stack &) const noexcept = delete;
-  bool operator!=(const Stack &) const noexcept = delete;
+  bool operator==(const Stack<Data> &) const noexcept = delete;
+  bool operator!=(const Stack<Data> &) const noexcept = delete;
 
   /* ************************************************************************ */
 
@@ -67,8 +67,8 @@ public:
   virtual Data &Top() = 0;
   virtual void Pop() = 0;
   virtual Data TopNPop() = 0;
-  virtual Data Push(const Data &) = 0;
-  virtual Data Push(Data &&) = 0;
+  virtual void Push(const Data &) = 0;
+  virtual void Push(Data &&) noexcept = 0;
 
 };
 

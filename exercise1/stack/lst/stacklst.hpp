@@ -25,6 +25,8 @@ private:
 protected:
 
   // using List<Data>::???;
+  using List<Data>::size;
+  using List<Data>::head;
   // ...
 
 public:
@@ -32,7 +34,7 @@ public:
   // Default constructor
   // StackLst() specifier;
 
-  inline StackLst() = default;
+  StackLst() = default;
 
   /* ************************************************************************ */
 
@@ -40,8 +42,8 @@ public:
   // StackLst(argument) specifiers; // A stack obtained from a TraversableContainer
   // StackLst(argument) specifiers; // A stack obtained from a MappableContainer
 
-  StackLst(const TraversableContainer<Data>);
-  StackLst(MappableContainer<Data> &&);
+  StackLst(const TraversableContainer<Data> &container) : List<Data>(container){};
+  StackLst(MappableContainer<Data> &&container) : List<Data>(std::move(container)){};
 
   /* ************************************************************************ */
 
@@ -67,12 +69,12 @@ public:
   // Copy assignment
   // type operator=(argument);
 
-  StackLst &operator=(const StackLst &);
+  StackLst &operator=(const StackLst<Data> &);
 
   // Move assignment
   // type operator=(argument);
 
-  StackLst &operator=(StackLst &&) noexcept;
+  StackLst &operator=(StackLst<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
@@ -80,8 +82,8 @@ public:
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
 
-  bool operator==(const StackLst &) const noexcept;
-  bool operator!=(const StackLst &) const noexcept;
+  bool operator==(const StackLst<Data> &) const noexcept;
+  bool operator!=(const StackLst<Data> &) const noexcept;
   /* ************************************************************************ */
 
   // Specific member functions (inherited from Stack)
@@ -98,7 +100,7 @@ public:
   void Pop() override;
   Data TopNPop() override;
   void Push(const Data &) override;
-  void Push(Data &&) override;
+  void Push(Data &&) noexcept override;
 
   /* ************************************************************************ */
 

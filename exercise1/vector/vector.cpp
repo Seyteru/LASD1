@@ -10,8 +10,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    Vector<Data>::Vector(const TraversableContainer<Data> &container){
-        std::cout<<"!!!!!!Vector Constructor Traversable!!!!!!"<<std::endl;
+    Vector<Data>::Vector(const TraversableContainer<Data> &container) : Vector(container.Size()){
         ulong index = 0;
         container.Traverse(
             [this, &index](const Data &data){
@@ -22,8 +21,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    Vector<Data>::Vector(MappableContainer<Data> &&container){
-        std::cout<<"!!!!!!Vector Constructor Mappable!!!!!!"<<std::endl;
+    Vector<Data>::Vector(MappableContainer<Data> &&container) : Vector(container.Size()){
         ulong index = 0;
         container.Map(
             [this, &index](Data &data){
@@ -178,27 +176,22 @@ namespace lasd {
     }
 
     template <typename Data>
-    SortableVector<Data>::SortableVector(const TraversableContainer<Data> &container){
-        std::cout<<"!!!!!!SortableVector Constructor Traversable!!!!!!"<<std::endl;
+    SortableVector<Data>::SortableVector(const TraversableContainer<Data> &container) : SortableVector(container.Size()){
         ulong index = 0;
         container.Traverse(
             [this, &index](const Data &data){
-                std::cout<<"!!!!!!Before elements assegnation!!!!!!"<<std::endl;
-                //elements[index] = data;
+                elements[index] = data;
                 index++;
-                std::cout<<"!!!!!!After elements assegnation!!!!!!"<<std::endl;
             }
         );
     }
 
     template <typename Data>
-    SortableVector<Data>::SortableVector(MappableContainer<Data> &&container){
-        std::cout<<"!!!!!!SortableVector Constructor Mappable!!!!!!"<<std::endl;
+    SortableVector<Data>::SortableVector(MappableContainer<Data> &&container) : SortableVector(container.Size()){
         ulong index = 0;
         container.Map(
             [this, &index](Data &data){
-                //elements[index] = std::move(data);
-                //std::swap(elements[index], data);
+                elements[index] = std::move(data);
                 index++;
             }
         );

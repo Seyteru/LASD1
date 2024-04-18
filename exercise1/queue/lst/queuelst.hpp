@@ -25,6 +25,9 @@ private:
 protected:
 
   // using List<Data>::???;
+  using List<Data>::size;
+  using List<Data>::tail;
+  using List<Data>::head;
   // ...
 
 public:
@@ -67,12 +70,12 @@ public:
   // Copy assignment
   // type operator=(argument);
 
-  QueueLst &operator=(const QueueLst &);
+  QueueLst &operator=(const QueueLst<Data> &);
 
   // Move assignment
   // type operator=(argument);
 
-  QueueLst &operator=(QueueLst &&) noexcept;
+  QueueLst &operator=(QueueLst<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
@@ -80,8 +83,8 @@ public:
   // type operator==(argument) specifiers;
   // type operator!=(argument) specifiers;
 
-  bool operator==(const QueueLst &) const noexcept;
-  bool operator!=(const QueueLst &) const noexcept;
+  bool operator==(const QueueLst<Data> &) const noexcept;
+  bool operator!=(const QueueLst<Data> &) const noexcept;
 
   /* ************************************************************************ */
 
@@ -99,7 +102,7 @@ public:
   void Dequeue() override;
   Data HeadNDequeue() override;
   void Enqueue(const Data &) override;
-  void Enqueue(Data &&) override;
+  void Enqueue(Data &&) noexcept override;
 
   /* ************************************************************************ */
 

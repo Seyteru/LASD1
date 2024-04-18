@@ -25,6 +25,7 @@ private:
 protected:
 
   // using Vector<Data>::???;
+  using Vector<Data>::size;
   using Vector<Data>::elements;
   ulong index = 0;
   // ...
@@ -101,7 +102,7 @@ public:
   void Pop() override;
   Data TopNPop() override;
   void Push(const Data &) override;
-  void Push(Data &&) override;
+  void Push(Data &&) noexcept override;
 
   /* ************************************************************************ */
 
@@ -126,7 +127,7 @@ public:
 protected:
 
   // Auxiliary functions, if necessary!
-
+  void Resize();
   void Reduce();
 
 };
