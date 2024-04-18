@@ -264,11 +264,13 @@ namespace lasd {
 
     template <typename Data>
     inline void List<Data>::Traverse(TraverseFun traverseFun) const{
+        std::cout<<"!!!!!!Inside List::Traverse!!!!!!"<<std::endl;
         PreOrderTraverse(traverseFun);
     }
 
     template <typename Data>
     void List<Data>::PreOrderTraverse(TraverseFun traverseFun) const{
+        std::cout<<"!!!!!!Inside List::PreOrderTraverse!!!!!!"<<std::endl;
         for(ulong index = 0; index < size; index++){
             traverseFun(operator[](index));
         }

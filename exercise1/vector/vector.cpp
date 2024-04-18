@@ -184,7 +184,7 @@ namespace lasd {
         container.Traverse(
             [this, &index](const Data &data){
                 std::cout<<"!!!!!!Before elements assegnation!!!!!!"<<std::endl;
-                elements[index] = data;
+                //elements[index] = data;
                 index++;
                 std::cout<<"!!!!!!After elements assegnation!!!!!!"<<std::endl;
             }
@@ -197,7 +197,8 @@ namespace lasd {
         ulong index = 0;
         container.Map(
             [this, &index](Data &data){
-                elements[index] = std::move(data);
+                //elements[index] = std::move(data);
+                //std::swap(elements[index], data);
                 index++;
             }
         );

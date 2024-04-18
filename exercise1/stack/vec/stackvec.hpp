@@ -26,6 +26,7 @@ protected:
 
   // using Vector<Data>::???;
   using Vector<Data>::elements;
+  ulong index = 0;
   // ...
 
 public:
@@ -125,6 +126,8 @@ public:
 protected:
 
   // Auxiliary functions, if necessary!
+
+  void Reduce();
 
 };
 
