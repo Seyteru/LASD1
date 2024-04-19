@@ -43,8 +43,8 @@ public:
   // StackVec(argument) specifiers; // A stack obtained from a TraversableContainer
   // StackVec(argument) specifiers; // A stack obtained from a MappableContainer
 
-  StackVec(const TraversableContainer<Data> &);
-  StackVec(MappableContainer<Data> &&);
+  StackVec(const TraversableContainer<Data> &container) : Vector<Data>(container){};
+  StackVec(MappableContainer<Data> &&container) : Vector<Data>(std::move(container)){};
 
   /* ************************************************************************ */
 

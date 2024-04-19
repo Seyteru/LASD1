@@ -57,7 +57,7 @@ namespace lasd {
     Vector<Data> &Vector<Data>::operator=(const Vector<Data> &vect){
         Vector<Data> *tempVector = new Vector<Data>(vect);
         std::swap(*tempVector, *this);
-        delete[] tempVector;
+        delete tempVector;
         return *this;
     }
 

@@ -107,7 +107,6 @@ public:
   // Specific member function (inherited from ClearableContainer)
 
   // using List<Data>::Clear;
-
   // Forse void Clear() override?
   using List<Data>::Clear;
 

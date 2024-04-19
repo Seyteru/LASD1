@@ -123,7 +123,6 @@ protected:
   // using Container::???;
   using Container::size;
   using Vector<Data>::elements;
-  Data *sortableElements = nullptr;
   // ...
 
 public:

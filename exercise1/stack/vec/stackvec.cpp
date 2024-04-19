@@ -3,16 +3,6 @@
 namespace lasd {    
 
     template <typename Data>
-    inline StackVec<Data>::StackVec(const TraversableContainer<Data> &container) : Vector<Data>::Vector(container){
-        index = container.Size() - 1;
-    }
-
-    template <typename Data>
-    StackVec<Data>::StackVec(MappableContainer<Data> &&container){
-
-    }
-
-    template <typename Data>
     StackVec<Data>::StackVec(const StackVec<Data> &stackVec) : Vector<Data>(stackVec){
         index = stackVec.index;
     }
@@ -25,27 +15,39 @@ namespace lasd {
     }
 
     template <typename Data>
-    StackVec<Data> &StackVec<Data>::operator=(const StackVec &stackVec){
+    StackVec<Data> &StackVec<Data>::operator=(const StackVec<Data> &stackVec){
         Vector<Data>::operator=(stackVec);
         index = stackVec.index;
         return *this;
     }
 
     template <typename Data>
-    StackVec<Data> &StackVec<Data>::operator=(StackVec &&stackVec) noexcept{
+    StackVec<Data> &StackVec<Data>::operator=(StackVec<Data> &&stackVec) noexcept{
         Vector<Data>::operator=(std::move(stackVec));
         std::swap(index, stackVec.index);
         return *this;
     }
 
     template <typename Data>
-    bool StackVec<Data>::operator==(const StackVec &stackVec) const noexcept{
-        return false;
+    bool StackVec<Data>::operator==(const StackVec<Data> &stackVec) const noexcept{
+        if(size != stackVec.size){
+            return false;
+        } else{
+            bool result = true;
+            ulong idx = 0;
+            while(result && idx < size){
+                if(elements[idx] != stackVec.elements[idx]){
+                    result = false;
+                }
+                idx++;
+            }
+            return result;
+        }
     }
 
     template <typename Data>
-    bool StackVec<Data>::operator!=(const StackVec &stackVec) const noexcept{
-        return false;
+    bool StackVec<Data>::operator!=(const StackVec<Data> &stackVec) const noexcept{
+        return !(*this == stackVec);
     }
 
     template <typename Data>
@@ -67,52 +69,72 @@ namespace lasd {
         }
     }
 
+    //To Modify for correct testing
     template <typename Data>
     void StackVec<Data>::Pop(){
-        if(index != 0){
-            //Reduce();
-        } else{
+        if(index == (size / 2)){
+            Reduce();
+        }
+        else if(index == 0){
             throw std::length_error("Invalid Access to an Empty Stack ");
+        } else{
+            index--;
         }
     }
 
     template <typename Data>
     Data StackVec<Data>::TopNPop(){
-        
+        Data dataRemoved = Top();
+        Pop();
+        return dataRemoved;
     }
 
     template <typename Data>
     void StackVec<Data>::Push(const Data &data){
-        
+        if(index == (size)){
+            Resize();
+        }
+        elements[index] = data;
+        index++;
     }
 
     template <typename Data>
     void StackVec<Data>::Push(Data &&data) noexcept{
-        
+        if(index == (size)){
+            Resize();
+        }
+        elements[index] = std::move(data);
+        index++;
     }
 
     template <typename Data>
     bool StackVec<Data>::Empty() const noexcept{
-        return false;
+        if(index == 0){
+            return true;
+        } else{
+            return false;
+        }
     }
     
     template <typename Data>
     ulong StackVec<Data>::Size() const noexcept{
-        return ulong();
+        return index;
     }
 
     template <typename Data>
     void StackVec<Data>::Clear(){
-
+        Vector<Data>::Clear();
+        Vector<Data>::Resize(1);
+        index = 0;
     }
 
     template <typename Data>
     void StackVec<Data>::Resize(){
-
+        Vector<Data>::Resize(size * 2);
     }
 
     template <typename Data>
-    void StackVec<Data>::Reduce()
-    {
+    void StackVec<Data>::Reduce(){
+        Vector<Data>::Resize(size - (size / 4));
     }
 }

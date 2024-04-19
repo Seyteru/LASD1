@@ -47,7 +47,7 @@ void stestStackInt(Stk & stk, uint & testnum, uint & testerr) {
     EqualStack(loctestnum, loctesterr, stk, copstk, true);
     PushC(loctestnum, loctesterr, stk, 5);
     NonEqualStack(loctestnum, loctesterr, stk, copstk, true);
-
+    
     copstk = stk;
     EqualStack(loctestnum, loctesterr, stk, copstk, true);
     PushC(loctestnum, loctesterr, copstk, 6);
@@ -77,9 +77,9 @@ void stestStackInt(Stk & stk, uint & testnum, uint & testerr) {
 }
 void stestStackInt(uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
-  // lasd::StackVec<int> stkvec;
-  // cout << endl << "Begin of StackVec<int> Test:" << endl;
-  // stestStackInt(stkvec, loctestnum, loctesterr);
+  lasd::StackVec<int> stkvec;
+  cout << endl << "Begin of StackVec<int> Test:" << endl;
+  stestStackInt(stkvec, loctestnum, loctesterr);
   lasd::StackLst<int> stklst;
   cout << endl << "Begin of StackLst<int> Test:" << endl;
   stestStackInt(stklst, loctestnum, loctesterr);
@@ -114,9 +114,9 @@ void stestStackFloat(Stk & stk, uint & testnum, uint & testerr) {
 }
 void stestStackFloat(uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
-  // lasd::StackVec<double> stkvec;
-  // cout << endl << "Begin of StackVec<double> Test:" << endl;
-  // stestStackFloat(stkvec, loctestnum, loctesterr);
+  lasd::StackVec<double> stkvec;
+  cout << endl << "Begin of StackVec<double> Test:" << endl;
+  stestStackFloat(stkvec, loctestnum, loctesterr);
   lasd::StackLst<double> stklst;
   cout << endl << "Begin of StackLst<double> Test:" << endl;
   stestStackFloat(stklst, loctestnum, loctesterr);
@@ -183,7 +183,7 @@ void stestStack(uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
   stestStackInt(loctestnum, loctesterr);
   stestStackFloat(loctestnum, loctesterr);
-  // stestStackString(loctestnum, loctesterr);
+  stestStackString(loctestnum, loctesterr);
   testnum += loctestnum;
   testerr += loctesterr;
   cout << endl << "Exercise 1B - Stack (Errors/Tests: " << loctesterr << "/" << loctestnum << ")" << endl;
