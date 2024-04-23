@@ -37,7 +37,7 @@ public:
   // Default constructor
   // QueueVec() specifier;
 
-  QueueVec() = default;
+  QueueVec();
 
   /* ************************************************************************ */
 
@@ -45,8 +45,8 @@ public:
   // QueueVec(argument) specifiers; // A stack obtained from a TraversableContainer
   // QueueVec(argument) specifiers; // A stack obtained from a MappableContainer
 
-  QueueVec(const TraversableContainer<Data> &);
-  QueueVec(MappableContainer<Data> &&);
+  QueueVec(const TraversableContainer<Data> &container) : Vector<Data>(container){};
+  QueueVec(MappableContainer<Data> &&container) : Vector<Data>(std::move(container)){};
 
   /* ************************************************************************ */
 
@@ -99,12 +99,12 @@ public:
   // type Enqueue(argument) specifiers; // Override Queue member (copy of the value)
   // type Enqueue(argument) specifiers; // Override Queue member (move of the value)
 
-  const Data &Head() const override;
-  Data &Head() override;
-  void Dequeue() override;
-  Data HeadNDequeue() override;
-  void Enqueue(const Data &) override;
-  void Enqueue(Data &&) noexcept override;
+  inline const Data &Head() const override;
+  inline Data &Head() override;
+  inline void Dequeue() override;
+  inline Data HeadNDequeue() override;
+  inline void Enqueue(const Data &) override;
+  inline void Enqueue(Data &&) noexcept override;
 
   /* ************************************************************************ */
 
@@ -128,7 +128,7 @@ public:
 
 protected:
 
-  void Resize(ulong, ulong);
+  void Resize();
   void Reduce();
   // Auxiliary functions, if necessary!
 

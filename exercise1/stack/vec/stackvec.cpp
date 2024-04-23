@@ -1,10 +1,11 @@
 #include "stackvec.hpp"
 
-namespace lasd {    
+namespace lasd {
 
     template <typename Data>
     StackVec<Data>::StackVec(const StackVec<Data> &stackVec) : Vector<Data>(stackVec){
         index = stackVec.index;
+        size = stackVec.size;
     }
 
     template <typename Data>
@@ -75,10 +76,10 @@ namespace lasd {
         if(index == (size / 2)){
             Reduce();
         }
-        else if(index == 0){
-            throw std::length_error("Invalid Access to an Empty Stack ");
-        } else{
+        if(index != 0){
             index--;
+        } else{
+            throw std::length_error("Invalid Access to an Empty Stack ");
         }
     }
 

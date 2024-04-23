@@ -123,6 +123,7 @@ public:
 
   template <typename Accumulator>
   using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
+  
   // template <typename Accumulator>
   // type PreOrderFold(arguments) specifiers;
 

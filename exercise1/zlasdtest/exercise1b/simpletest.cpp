@@ -52,7 +52,7 @@ void stestStackInt(Stk & stk, uint & testnum, uint & testerr) {
     EqualStack(loctestnum, loctesterr, stk, copstk, true);
     PushC(loctestnum, loctesterr, copstk, 6);
     NonEqualStack(loctestnum, loctesterr, stk, copstk, true);
-
+    
     Top(loctestnum, loctesterr, copstk, true, 6);
     copstk = move(stk);
     TopNPop(loctestnum, loctesterr, copstk, true, 5);
@@ -248,9 +248,9 @@ void stestQueueInt(Que & que, uint & testnum, uint & testerr) {
 }
 void stestQueueInt(uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
-  // lasd::QueueVec<int> quevec;
-  // cout << endl << "Begin of QueueVec<int> Test:" << endl;
-  // stestQueueInt(quevec, loctestnum, loctesterr);
+  lasd::QueueVec<int> quevec;
+  cout << endl << "Begin of QueueVec<int> Test:" << endl;
+  stestQueueInt(quevec, loctestnum, loctesterr);
   lasd::QueueLst<int> quelst;
   cout << endl << "Begin of QueueLst<int> Test:" << endl;
   stestQueueInt(quelst, loctestnum, loctesterr);
@@ -285,9 +285,9 @@ void stestQueueFloat(Que & que, uint & testnum, uint & testerr) {
 }
 void stestQueueFloat(uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
-  // lasd::QueueVec<double> quevec;
-  // cout << endl << "Begin of QueueVec<double> Test:" << endl;
-  // stestQueueFloat(quevec, loctestnum, loctesterr);
+  lasd::QueueVec<double> quevec;
+  cout << endl << "Begin of QueueVec<double> Test:" << endl;
+  stestQueueFloat(quevec, loctestnum, loctesterr);
   lasd::QueueLst<double> quelst;
   cout << endl << "Begin of QueueLst<double> Test:" << endl;
   stestQueueFloat(quelst, loctestnum, loctesterr);
@@ -354,7 +354,7 @@ void stestQueue(uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
   stestQueueInt(loctestnum, loctesterr);
   stestQueueFloat(loctestnum, loctesterr);
-  // stestQueueString(loctestnum, loctesterr);
+  stestQueueString(loctestnum, loctesterr);
   testnum += loctestnum;
   testerr += loctesterr;
   cout << endl << "Exercise 1B - Queue (Errors/Tests: " << loctesterr << "/" << loctestnum << ")" << endl;
