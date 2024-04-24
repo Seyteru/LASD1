@@ -11,7 +11,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    QueueVec<Data>::QueueVec(const QueueVec<Data> &queueVec){
+    QueueVec<Data>::QueueVec(const QueueVec<Data> &queueVec) : Vector<Data>(queueVec){
         head = queueVec.head;
         tail = queueVec.tail;
         effectiveSize = queueVec.effectiveSize;
@@ -45,7 +45,7 @@ namespace lasd {
 
     template <typename Data>
     bool QueueVec<Data>::operator==(const QueueVec<Data> &queueVec) const noexcept{
-        if(effectiveSize != queueVec.effectiveSize){
+        if(size != queueVec.size){
             return false;
         } else{
             bool result = true;
@@ -85,14 +85,14 @@ namespace lasd {
 
     template <typename Data>
     inline void QueueVec<Data>::Dequeue(){
-        if(effectiveSize <= (size / 2)){
+        if(effectiveSize <= size / 2){
             Reduce();
         }
         if(effectiveSize == 0){
             throw std::length_error("Invalid Access to An Empty Queue");
         } else{
             head++;
-            head = (head % Vector<Data>::Size());
+            head = head % Vector<Data>::Size();
             effectiveSize--;
         }
     }
@@ -113,7 +113,7 @@ namespace lasd {
             Resize();
         }
         tail++;
-        tail = (tail & Vector<Data>::Size());
+        tail = (tail % Vector<Data>::Size());
         elements[tail] = data;
         effectiveSize++;
     }
@@ -123,11 +123,11 @@ namespace lasd {
         if(head == -1){
             head = 0;
         }
-        if(effectiveSize == Vector<Data>::Size()){
+        if(effectiveSize == size){
             Resize();
         }
         tail++;
-        tail = (tail & Vector<Data>::Size());
+        tail = (tail % Vector<Data>::Size());
         elements[tail] = std::move(data);
         effectiveSize++;
     }
@@ -161,20 +161,17 @@ namespace lasd {
         int j = 0;
         if(tail > head){
             for(ulong i = head; i <= tail; i++){
-            //vector[j] = elements[i];
-            std::swap(elements[i], vector[j]);
+            vector[j] = elements[i];
             j++;
             }
         }
         if(tail < head){
-            for(ulong i = head; i < size; i++){
-            //vector[j] = elements[i];
-            std::swap(elements[i], vector[j]);
+            for(ulong i = head; i < Vector<Data>::Size(); i++){
+            vector[j] = elements[i];
             j++;
             }
             for(ulong i = 0; i <= tail; i++){
-            //vector[j] = elements[i];
-            std::swap(elements[i], vector[j]);
+            vector[j] = elements[i];
             j++;
             }
         }
@@ -188,24 +185,21 @@ namespace lasd {
 
     template <typename Data>
     void QueueVec<Data>::Reduce(){
-        Vector<Data> vector(size - (size * 2));
+        Vector<Data> vector(size - (size / 4));
         int j = 0;
         if(tail > head){
             for(ulong i = head; i <= tail; i++){
-            //vector[j] = elements[i];
-            std::swap(elements[i], vector[j]);
+            vector[j] = elements[i];
             j++;
             }
         }
         if(tail < head){
-            for(ulong i = head; i < size; i++){
-            //vector[j] = elements[i];
-            std::swap(elements[i], vector[j]);
+            for(ulong i = head; i < Vector<Data>::Size(); i++){
+            vector[j] = elements[i];
             j++;
             }
             for(ulong i = 0; i <= tail; i++){
-            //vector[j] = elements[i];
-            std::swap(elements[i], vector[j]);
+            vector[j] = elements[i];
             j++;
             }
         }
