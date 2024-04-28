@@ -158,9 +158,9 @@ namespace lasd {
     template <typename Data>
     void QueueVec<Data>::Resize(){
         Vector<Data> vector(size * 2);
-        int j = 0;
+        long j = 0;
         if(tail > head){
-            for(ulong i = head; i <= tail; i++){
+            for(long i = head; i <= tail; i++){
             vector[j] = elements[i];
             j++;
             }
@@ -170,7 +170,7 @@ namespace lasd {
             vector[j] = elements[i];
             j++;
             }
-            for(ulong i = 0; i <= tail; i++){
+            for(long i = 0; i <= tail; i++){
             vector[j] = elements[i];
             j++;
             }
@@ -186,9 +186,9 @@ namespace lasd {
     template <typename Data>
     void QueueVec<Data>::Reduce(){
         Vector<Data> vector(size - (size / 4));
-        int j = 0;
+        long j = 0;
         if(tail > head){
-            for(ulong i = head; i <= tail; i++){
+            for(long i = head; i <= tail; i++){
             vector[j] = elements[i];
             j++;
             }
@@ -198,7 +198,7 @@ namespace lasd {
             vector[j] = elements[i];
             j++;
             }
-            for(ulong i = 0; i <= tail; i++){
+            for(long i = 0; i <= tail; i++){
             vector[j] = elements[i];
             j++;
             }
