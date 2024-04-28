@@ -737,14 +737,28 @@ void testVectorInteger() {
     getBack(vec);
     getFront(copvec);
     getBack(copvec);
-    cout << "Vector should be Equal" << endl;
+    cout << "Vector should be Eqal" << endl;
     equalLinear(vec, copvec);
     cout << "Set data at Front and Back of the First Vector" << endl;
     setDataFromIndex(vec, 0, 0);
     setDataFromIndex(vec, vec.Size(), 0);
     cout << "Vector should not be equal" << endl;
     equalLinear(vec, copvec);
-    cout << "Set data in unaccessible index" << endl;
+    cout << "Pre Order Map of the 2 Vectors: " << endl;
+    vec.PreOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    copvec.PreOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    cout << "Post Order Map of the 2 Vectors: " << endl;
+    vec.PostOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    copvec.PostOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    cout << endl << "Set data in unaccessible index" << endl;
     setDataFromIndex(vec, (vec.Size() + 1), 0);
   }
   catch(...){
@@ -776,6 +790,20 @@ void testVectorFloat() {
     setDataFromIndex(vec, vec.Size(), 0.0f);
     cout << "Vector should not be equal" << endl;
     equalLinear(vec, copvec);
+    cout << "Pre Order Map of the 2 Vectors: " << endl;
+    vec.PreOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    copvec.PreOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    cout << "Post Order Map of the 2 Vectors: " << endl;
+    vec.PostOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    copvec.PostOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
     cout << "Set data in unaccessible index" << endl;
     setDataFromIndex(vec, (vec.Size() + 1), 0.0f);
   }
@@ -808,6 +836,20 @@ void testVectorString() {
     setDataFromIndex(vec, vec.Size(), string("A"));
     cout << "Vector should not be equal" << endl;
     equalLinear(vec, copvec);
+    cout << "Pre Order Map of the 2 Vectors: " << endl;
+    vec.PreOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    copvec.PreOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    cout << "Post Order Map of the 2 Vectors: " << endl;
+    vec.PostOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    copvec.PostOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
     cout << "Set data in unaccessible index" << endl;
     setDataFromIndex(vec, (vec.Size() + 1), string("A"));
   }
@@ -875,6 +917,28 @@ void testListInteger() {
   cout << endl << "Begin List for Integer" << endl;
   cout<<endl;
   testList(lst);
+  try{
+    fill(lst, 30);
+    lasd::List<int> newlst(lst);
+    cout << "Pre Order Map of the 2 Lists: " << endl;
+    lst.PreOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    newlst.PreOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    cout << "Post Order Map of the 2 Lists: " << endl;
+    lst.PostOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    newlst.PostOrderMap([](int &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+
+  }
+  catch(...){
+    cout << "Error!" <<  endl;
+  }
 }
 
 void testListFloat() {
@@ -883,6 +947,28 @@ void testListFloat() {
   cout << endl << "Begin List for Float" << endl;
   cout<<endl;
   testList(lst);
+  try{
+    fill(lst, 30);
+    lasd::List<float> newlst(lst);
+    cout << "Pre Order Map of the 2 Lists: " << endl;
+    lst.PreOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    newlst.PreOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    cout << "Post Order Map of the 2 Lists: " << endl;
+    lst.PostOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    newlst.PostOrderMap([](float &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+
+  }
+  catch(...){
+    cout << "Error!" <<  endl;
+  }
 }
 
 void testListString() {
@@ -891,6 +977,28 @@ void testListString() {
   cout << endl << "Begin List for String" << endl;
   cout<<endl;
   testList(lst);
+  try{
+    fill(lst, 30);
+    lasd::List<string> newlst(lst);
+    cout << "Pre Order Map of the 2 Lists: " << endl;
+    lst.PreOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    newlst.PreOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    cout << "Post Order Map of the 2 Lists: " << endl;
+    lst.PostOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+    newlst.PostOrderMap([](string &dat){cout << dat << " - ";});
+    cout<<endl;
+    cout<<endl;
+
+  }
+  catch(...){
+    cout << "Error!" <<  endl;
+  }
 }
 
 void mytest() {
